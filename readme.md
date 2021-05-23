@@ -28,3 +28,22 @@ git branch -M main
 git push -u origin main
 
 ```
+
+
+
+Para recuperar los cambios desde el remoto:
+
+```
+git pull
+```
+
+
+
+Para Volver a "subir" los cambios del local al remoto:
+
+```
+git add.
+git comit -m "Second fix"
+git push
+```
+
