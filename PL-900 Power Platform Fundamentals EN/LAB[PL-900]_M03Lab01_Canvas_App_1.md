@@ -1,218 +1,218 @@
 ---
 lab:
-    title: 'Laboratorio 2: Cómo crear una aplicación de lienzo, parte 1'
-    module: 'Módulo 3: Comience con Power Apps'
+    title: 'Lab 2: How to build a canvas app, Part 1'
+    module: 'Module 3: Get started with Power Apps'
 ---
 
-# Módulo 3: Comience con Power Apps
+# Module 3: Get started with Power Apps
 
-## Laboratorio: Cómo crear una aplicación de lienzo, parte 1
+## Lab: How to build a canvas app, Part 1
 
-### Aviso importante (vigente a partir de noviembre de 2020):
-Se ha cambiado el nombre de Common Data Service a Microsoft Dataverse. Parte de la terminología de Microsoft Dataverse se ha actualizado. Por ejemplo, ahora las entidades se llaman tablas. A partir de ahora, los campos y los registros de las bases de datos de Dataverse se denominarán columnas y filas.
+### Important Notice (Effective November 2020):
+Common Data Service has been renamed to Microsoft Dataverse. Some terminology in Microsoft Dataverse has been updated. For example, entity is now table. Fields and records in Dataverse databases are now referred to as columns and rows.
 
-Las aplicaciones están actualizando la experiencia del usuario, pero algunas referencias a la terminología de Microsoft Dataverse, como entidad (de ahora en delante **tabla**), campo (de ahora en adelante **columna**) y registro (de ahora en adelante **fila**) pueden no estar actualizadas. Tenga esto en cuenta cuando trabaje en los laboratorios.
+While the applications are in the process of updating their user experience, some references to terminology for Microsoft Dataverse like entity (now **table**), field (now **column**), and record (now **row**) may be out of date. Please keep this in mind as you work through the labs.
 
-Si desea obtener más información y consultar la lista completa de los términos afectados, visite [¿Qué es Microsoft Dataverse?](https://docs.microsoft.com/es-es/powerapps/maker/common-data-service/data-platform-intro#terminology-updates).
+For more information and for a complete list of affected terms, please visit [What is Microsoft Dataverse?](https://docs.microsoft.com/en-us/powerapps/maker/common-data-service/data-platform-intro#terminology-updates)
 
-# Escenario
+# Scenario
 
-Bellows College es una institución educativa que tiene un campus con varios edificios. Actualmente se guarda un registro físico de las visitas al campus. La información no se recaba de manera coherente y no hay forma de recopilar y analizar los datos sobre las visitas de todo el campus. 
+Bellows College is an educational organization with multiple buildings on campus. Campus visits are currently recorded in paper journals. The information is not captured consistently, and there are no means to collect and analyze data about the visits across the entire campus. 
 
-La administración del campus querría modernizar el sistema de registro de visitantes de los edificios cuyo acceso esté controlado por el personal de seguridad y en los que los anfitriones deban anotar con antelación las visitas y dejar constancia de ellas.
+Campus administration would like to modernize their visitor registration system where access to the buildings is controlled by security personnel and all visits are required to be pre-registered and recorded by their hosts.
 
-A lo largo de este curso, creará aplicaciones e implementará la automatización para permitir que el personal de administración y seguridad de Bellows College administre y controle el acceso a los edificios en el campus.  
+Throughout this course, you will build applications and perform automation to enable the Bellows College administration and security personnel to manage and control access to the buildings on campus.  
 
-En la parte 1 de este laboratorio, diseñará una aplicación de lienzo de Power Apps que el personal de la universidad podrá usar para administrar las visitas de sus invitados.
+In part 1 this lab, you will design a Power Apps canvas app that college staff can use to manage visits for their guests.
 
-# Pasos de alto nivel del laboratorio
+# High-level lab steps
 
-Seguiremos el siguiente esquema para diseñar la aplicación de lienzo:
+We will follow the below outline to design the canvas app:
 
--   Crear la aplicación a partir de datos con la plantilla de factor de forma del teléfono
--   Configurar una página de detalles con información de la visita
--   Configurar una página de edición para crear para las visitas
--   Configurar un control de la galería para mostrar las visitas
--   Agregar filtros en el origen de datos de la galería para mostrar solo visitas futuras
+-   Create the app from data using the phone form factor template
+-   Configure a detail page with visit info
+-   Configure an edit page to create to visits
+-   Configure a gallery control to show the visits
+-   Add filtering on the gallery data source to show only future visits
 
-## Requisitos previos
+## Prerequisites
 
-* Haber finalizado el **Módulo 0, Laboratorio 0: Validación del entorno de laboratorio**
-* Haber finalizado el **Módulo 2, Laboratorio 1: Introducción a Microsoft Dataverse**
+* Completion of **Module 0 Lab 0 - Validate lab environment**
+* Completion of **Module 2 Lab 1 - Introduction to Microsoft Dataverse**
 
-## Cuestiones que conviene tener en cuenta antes de comenzar
+## Things to consider before you begin
 
--   ¿Cuál es el factor de forma más frecuente para el público objetivo?
--   Estimar el número de registros del sistema 
--   Cómo reducir los registros seleccionados para mejorar el rendimiento de la aplicación y la adopción por parte del usuario
+-   What is the most prevalent form factor for the target audience?
+-   Estimate the number of records in the system 
+-   How to narrow the records selected to improve app performance and user adoption
 
-# Ejercicio 1: Crear una aplicación de lienzo del personal
+# Exercise \#1: Create Staff Canvas App
 
-**Objetivo:** en este ejercicio, creará una aplicación de lienzo a partir de una plantilla y, luego, la modificará para incluir los datos necesarios.
+**Objective:** In this exercise, you will create a canvas app from a template and then modify it to include required data.
 
-## Tarea 1: Crear una aplicación de lienzo
+## Task \#1: Create Canvas App
 
-En esta tarea, creará una aplicación de lienzo mediante la plantilla de diseño para teléfonos basada en Microsoft Dataverse. Con Visitas como una tabla seleccionada de Dataverse, la plantilla generará la aplicación Galería - Ver - Editar para administrar las visitas al campus.
+In this task, you will create a canvas app using the phone layout template based on Microsoft Dataverse. Using Visits as a selected table from Dataverse, the template will generate a Gallery - View - Edit app to manage campus visits.
 
-1.  Vea las aplicaciones de su entorno.
+1.  View the apps in your environment.
 
-    -   Inicie sesión en <https://make.powerapps.com>.
+    -   Sign in to <https://make.powerapps.com>
 
-    -   Seleccione su **entorno** en la parte superior derecha si aún no está configurado en
-        su Entorno de práctica.
+    -   Select your **environment** at the top right if it is not already set to
+        your Practice environment.
 
-    -   Seleccione **Aplicaciones**.
+    -   Select **Apps**.
 
-2.  Cree una nueva aplicación de lienzo
+2.  Create new canvas application
 
-    -   Haga clic en **Nueva aplicación** y seleccione **Lienzo**.
+    -   Click **New app** and select **Canvas**.
 
-    -   Seleccione **Diseño de teléfono** en **Common Data Service**.
+    -   Select **Phone layout** under **Common Data Service**.
 
-3.  Seleccione **Crear** debajo de la conexión de **Common Data Service**.
+3.  Select **Create** under the **Common Data Service** connection
 
-4.  Seleccione la tabla **Visitas**.
+4.  Select **Visits** table
 
-5.  Haga clic en **Conectar**
+5.  Click **Connect**
 
-6.  Puede que aparezca la ventana **Bienvenido a Power Apps Studio**. Haga clic en **Omitir**.
+6.  The **Welcome to Power Apps Studio** window may appear. Click **Skip**.
 
-7.  Guarde la aplicación
+7.  Save application
 
-    -   Haga clic en **Archivo \> Guardar**.
+    -   Click **File \> Save**.
 
-    -   Escriba **[Su apellido] Personal del campus** como el nombre de la aplicación.
+    -   Enter **[Your Last Name] Campus Staff** as the app name.
 
-    -   Pulse **Guardar**.
+    -   Press **Save**.
 
-## Tarea 2: Configurar el formulario de detalles de visitas
+## Task \#2: Configure Visits Detail Form
 
-En esta tarea, configurará un formulario de detalles para ver información sobre los registros de las visitas individuales.
+In this task, you will configure the Detail form to view information about individual visit records.
 
-1. Seleccione la flecha **Atrás** en la parte superior izquierda para volver a la definición de la aplicación.
+1. Select the **Back** arrow at the top left to go back to the app definition.
 
-2. Expanda **DetailScreen1** debajo de **Vista de árbol**.
+2. Expand **DetailScreen1** under **Tree view**
 
-3.  Seleccione **DetailForm1**.
+3.  Select **DetailForm1**
 
-4.  Seleccione **Editar campos** al lado de **Campos** en el panel derecho.
+4.  Select **Edit fields** next to **Fields** in the right-hand panel.
 
-5.  Haga clic en **Agregar campo**.
+5.  Click **Add field**
 
-6.  Seleccione los siguientes campos:
+6.  Select the following fields:
 
-    * Fin real
+    * Actual End
     
-    * Inicio real
+    * Actual Start
     
-    * Edificio 
+    * Building 
     
-    * Código
+    * Code
     
-    * Fin programado
+    * Scheduled End
     
-    * Inicio programado
+    * Scheduled Start
     
-    * Visitante
+    * Visitor
     
-7.  Haga clic en **Agregar**.
+7.  Click **Add**
 
-8.  Para reorganizar los campos en el panel **Campos**, arrastre y suelte los nombres de campo hacia arriba o hacia abajo. El orden recomendado es el siguiente:
-    * Código, Nombre, Edificio, Visitante, Inicio programado, Fin programado, Inicio real, Fin real
-    >**Sugerencia:** para contraer cada campo, haga clic en la flecha que indica hacia abajo junto al nombre del campo.
+8.  Rearrange fields in the **Fields** pane by dragging and dropping field names up or down. Recommended order is:
+    * Code, Name, Building, Visitor, Scheduled Start, Scheduled End, Actual Start, Actual End
+    >**Tip:** You can collapse each field by clicking the down arrow beside the field name.
 
-9.  Quite el campo **Creado en**. Para ello, haga clic en los puntos suspensivos (**...**) junto al nombre de campo y elija **Quitar**. 
+9.  Remove the **Created On** field by clicking the ellipses (**...**) beside the field name and selecting **Remove**. 
 
-10.  Cierre el panel **Campos**.
+10.  Close the **Fields** pane.
  
-11.  Para conservar el trabajo en curso, haga clic en **Archivo** y luego en **Guardar**. Utilice la flecha Atrás para volver a la aplicación.
+11.  To preserve work in progress, click **File** then click **Save**. Use the back arrow to return to the app.
 
-## Tarea 3: Configurar el formulario de edición de visitas
+## Task \#3: Configure Visits Edit Form
 
-En esta tarea, configurará un formulario para editar información sobre las filas de visitas individuales.
+In this task, you will configure a form to edit information about individual visit rows.
 
-1.  Expanda **EditScreen1** debajo de **Vista de árbol**.
+1.  Expand **EditScreen1** under **Tree view**
 
-2.  Seleccione **EditForm1**.
+2.  Select **EditForm1**
 
-3.  Seleccione el campo **Creado en** y presione la tecla **Supr** para quitar el campo.
+3.  Select **Created On** field and press **Del** key to remove the field
 
-4.  Seleccione **Editar campos** en el panel de propiedades.
+4.  Select **Edit fields** in the properties panel
 
-5.  Haga clic en **Agregar campo**.
+5.  Click **Add field**
 
-6.  Seleccione los siguientes campos:
+6.  Select the following fields:
 
-    * Edificio 
+    * Building 
     
-    * Fin programado
+    * Scheduled End
     
-    * Inicio programado
+    * Scheduled Start
     
-    * Visitante
+    * Visitor
     
-7.  Haga clic en **Agregar**.
+7.  Click **Add**
 
-8.  Para reorganizar los campos en el panel **Campos**, arrastre y suelte los nombres de campo hacia arriba o hacia abajo. El orden recomendado es el siguiente:
+8.  Rearrange fields in the **Fields** pane by dragging and dropping field names up or down. Recommended order is:
     
-    * Nombre, Edificio, Visitante, Inicio programado, Fin programado
-    >**Sugerencia:** para contraer cada campo, haga clic en la flecha que indica hacia abajo junto al nombre del campo. 
+    * Name, Building, Visitor, Scheduled Start, Scheduled End
+    >**Tip:** You can collapse each field by clicking the down arrow beside the field name. 
 
-9.  Cierre el panel **Campos**.
+9.  Close the **Fields** pane.
 
-10.  Para conservar el trabajo en curso, haga clic en **Archivo** y luego en **Guardar**. Utilice la flecha Atrás para volver a la aplicación.
+10.  To preserve work in progress, click **File** then click **Save**. Use the back arrow to return to the app.
 
-Su pantalla debería tener un aspecto similar a este:
+Your screen should look approximately like the following:
 
-![Formulario de edición de lienzo](media/2-canvas-edit-form.png)
+![Canvas edit form](media/2-canvas-edit-form.png)
 
-## Tarea 4: Configurar la galería de visitas
+## Task \#4: Configure Visits gallery
 
-En esta tarea, configurará la galería pregenerada para mostrar el título y las fechas de inicio y finalización de la visita. 
+In this task, you will configure the pre-generated gallery to display the title, start date and end date for the visit. 
 
-1.  Expanda **BrowseScreen1** debajo de **Vista de árbol**.
+1.  Expand **BrowseScreen1** under **Tree view**
 
-2.  Seleccione **BrowseGallery1**.
+2.  Select **BrowseGallery1**
 
-3.  Seleccione la propiedad **TemplateSize** en el panel Propiedades avanzadas de la derecha.
+3.  Select **TemplateSize** property from in the Advanced Properties panel on the right
 
-4.  Reemplace la expresión con lo siguiente: `Min(150, BrowseGallery1.Height - 60)`. Esto garantizará que haya suficiente espacio para introducir información adicional.
+4.  Replace the expression with the following `Min(150, BrowseGallery1.Height - 60)`. That will ensure sufficient space for additional information.
 
-5.  En la versión preliminar de la aplicación, seleccione el primer campo Fecha y hora en la galería.
+5.  In the app preview, select the first Date Time field in the gallery.
 
-6.  En la barra de fórmulas de la parte superior, cambie **ThisItem.'Created On'** a `ThisItem.'Scheduled Start'`.
+6.  In the formula bar at the top, change **ThisItem.'Created On'**to `ThisItem.'Scheduled Start'`
 
-7.  Seleccione el campo de nuevo.
+7.  Select the field again
 
-8.  Pulse **CTRL-C** y luego **CTRL-V** para crear una copia del campo.
+8.  Press **CTRL-C** then **CTRL-V** to create a copy of the field.
 
-9.  Con el ratón o el teclado, mueva el control copiado hacia abajo y alinéelo con los otros controles de la galería, debajo del campo Fecha y hora.
+9.  Using either mouse or keyboard, move the copied control down and align it with the other controls in the gallery, beneath the other Date Time field.
 
-10.  En la barra de fórmulas de la parte superior, cambie **ThisItem.'Scheduled Start'** a `ThisItem.'Scheduled End'`.
+10.  In the formula bar at the top, change **ThisItem.'Scheduled Start'** to `ThisItem.'Scheduled End'`
 
-11.  Para conservar el trabajo en curso, haga clic en **Archivo** y luego en **Guardar**. Utilice la flecha Atrás para volver a la aplicación.
+11.  To preserve work in progress, click **File** then click **Save**. Use the back arrow to return to the app.
 
-## Tarea 5: Agregar un filtro de fechas
+## Task #5: Add date filter
 
-Debido a que el número de visitas aumenta continuamente, los usuarios necesitan una función que filtre la galería de visitas. Por ejemplo, el usuario podría querer ver solo las visitas futuras. En esta tarea, agregará la capacidad de mostrar visitas únicamente posteriores a una fecha seleccionada por el usuario.
+Because number of visits continuously grows, users need a feature to filter the visits gallery. For example, the user may want to see only the future visits. In this task, you will add ability to show visits only after a date selected by the user.
 
-1. Seleccione **BrowseScreen1**.
+1. Select **BrowseScreen1**
 
-2. Seleccione el menú **Insertar** en la parte superior.
+2. Select **Insert** menu at the top.
 
-3. Haga clic en **Entrada** y seleccione **Selector de fechas**.
+3. Click **Input** and select **Date picker**.
 
-4. Con el teclado o el ratón, coloque el control debajo del cuadro de búsqueda.
+4. Using either keyboard or mouse, position the control below the search box.
 
-5. Seleccione **BrowseGallery1**. 
+5. Select **BrowseGallery1** 
 
-6. Cambie el tamaño y mueva el control de la galería hasta que se encuentre debajo del selector de fechas y cubra la pantalla. Para ello, haga clic en el icono de cambio de tamaño en la parte central superior del control de la galería y cambie el tamaño del control para que comience después del selector de fechas.
+6. Resize and move the gallery control so that it is located under the date picker and covers the screen. You can do this by clicking the resize icon at the top center of the gallery control and resizing the control to start after the date picker.
 
-7. Con **BrowseGallery1** seleccionado, haga clic en la pestaña **Avanzado** del panel Propiedades.
+7. With **BrowseGallery1** selected, click the **Advanced** tab of the Properties pane.
 
-8. Busque la propiedad **Elementos** y haga clic en el cuadro de texto.
+8. Locate the **Items** property and click in the text box.
 
-9. En la expresión, busque **[@Visits]** y reemplácelo con `Filter(Visits,'Scheduled End' >= DatePicker1.SelectedDate)`. La expresión completa debería quedar de la siguiente manera:
+9. In the expression, locate **[@Visits]** and replace it with `Filter(Visits,'Scheduled End' >= DatePicker1.SelectedDate)`. The full expression should look like the following:
 
    ```
    SortByColumns(
@@ -229,73 +229,73 @@ Debido a que el número de visitas aumenta continuamente, los usuarios necesitan
    )
    ```
    
-10. Para conservar el trabajo en curso, haga clic en **Archivo** y luego en **Guardar**. Utilice la flecha Atrás para volver a la aplicación.
+10. To preserve work in progress, click **File** then click **Save**. Use the back arrow to return to the app.
 
-Su pantalla debería tener un aspecto similar a este:
+Your screen should look approximately like the following:
 
-![Galería de filtrado de lienzo](media/2-canvas-browse.png)
+![Canvas filtering gallery](media/2-canvas-browse.png)
 
-# Ejercicio 2: Completar la aplicación
+# Exercise #2: Complete the App
 
-En este ejercicio probará la aplicación y, una vez compruebe que funciona correctamente, la agregará a su solución.
+In this exercise you will test the application and, once successful, you will add it to your solution.
 
-## Tarea 1: Probar la aplicación
+## Task \#1: Test App
 
-1.  Inicie la aplicación
+1.  Start the application
 
-    -   Seleccione **BrowseScreen1** y pulse la Función **F5**, o haga clic en el icono **Reproducir** en la esquina superior derecha para obtener una versión preliminar de la aplicación.
+    -   Select the **BrowseScreen1** and press Function **F5**, or click the **Play** icon at the upper-right corner to preview the app.
     
-    -   La aplicación debería cargar y mostrar una lista de visitas. 
+    -   The application should load and show a list of visits. 
     
-    -   Para probar el filtro, seleccione diferentes fechas en el control del selector de fechas.
+    -   Test the filter by selecting different dates in the date picker control
     
-    -   Seleccione una visita y compruebe que el formulario de visualización funciona correctamente.
+    -   Select a visit and verify that display form is working properly
     
-    -   Regrese a la galería y pulse **+** para crear una nueva visita. Compruebe que el formulario de edición contiene las columnas requeridas, incluidass las de visitantes, edificio y fechas de inicio y finalización programadas.
+    -   Return to the gallery and press **+** to create a new visit. Verify that edit form contains required columns including visitor, building, and scheduled start and end dates.
     
-    -   Rellene la información y envíela. Compruebe que el nuevo registro aparece en la galería.
+    -   Fill in the information and submit. Verify that the new record appears in the gallery.
     
-    -   Cree al menos 2 visitas más.
+    -   Create at least 2 more visits.
     
-    -   Pulse la tecla **ESC** o haga clic en el icono **X** para cerrar el modo de versión preliminar.
+    -   Press **ESC** key or click the **X** icon to close preview mode.
 
-2.  Guarde y publique la aplicación
+2.  Save and publish the application
 
-    -   Haga clic en **Archivo** y, si se muestra el botón Guardar, haga clic en **Guardar**.
+    -   Click **File** and, if the Save button is displayed, click **Save**.
 
-    -   Haga clic en **Publicar**.
+    -   Click **Publish**.
 
-    -   Haga clic en **Publicar esta versión**.
+    -   Click **Publish this Version**.
 
-    -   Haga clic en la flecha **Atrás** para volver a la aplicación.
+    -   Click the **Back** arrow to navigate back to the app.
 
-    -   Cierre la ventana o pestaña del explorador **Diseñador**.
+    -   Close the **Designer** browser window or tab.
 
-    -   Haga clic en **Salir** si se muestra cuando intenta cerrar la ventana del explorador.
+    -   Click **Leave** if prompted when tried to close the browser window.
 
-## Tarea 2: Agregar la aplicación a la solución y publicarla 
+## Task #2: Add App to Solution and publish 
 
-1. Abra la solución de Administración del campus.
+1. Open the Campus Management solution.
 
-   * Inicie sesión en <https://make.powerapps.com>.
+   * Sign in to <https://make.powerapps.com>
    
-   * Si el Entorno que se muestra en la parte superior derecha no es su Entorno de práctica, seleccione su **Entorno**. 
+   * If the Environment displayed in the top right is not your Practice environment, select your **Environment**. 
    
-   * Seleccione **Soluciones**.
+   * Select **Solutions**.
    
-   * Haga clic para abrir la solución de **Administración del campus**.
+   * Click to open your **Campus Management** solution.
    
-2. Seleccione **Agregar existente**, luego haga clic en **Aplicación** y después haga clic en **Aplicación de lienzo**.
+2. Select **Add existing**, then click **App**, and then click **Canvas app**.
 
-3. Seleccione la pestaña **Soluciones externas**.
+3. Select **Outside solutions** tab.
 
-4. Seleccione la aplicación **Personal del campus** y haga clic en **Agregar**.
+4. Select your **Campus Staff** app, click **Add**.
 
-5. Seleccione **Publicar todas las personalizaciones**.
+5. Select **Publish all customizations**.
 
-# Retos
+# Challenges
 
-* Vista del calendario de todas las visitas y filtrado por intervalo de fechas
-* Capacidad para crear y administrar contactos como parte de la aplicación
-* Cómo mostrar varias reuniones durante una sola visita
+* Calendar view of all visits and filtering by date range
+* Ability to create and manage contacts as part of the app
+* How to display multiple meetings during a single visit
 

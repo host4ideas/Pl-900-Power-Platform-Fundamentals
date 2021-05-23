@@ -1,315 +1,315 @@
 ---
 lab:
-    title: 'Laboratorio 4: Cómo crear una aplicación basada en modelo'
-    module: 'Módulo 3: Comience con Power Apps'
+    title: 'Lab 4: How to build a model-driven app'
+    module: 'Module 3: Get started with Power Apps'
 ---
 
-# Módulo 3: Comience con Power Apps
-## Laboratorio 3: Cómo crear una aplicación basada en modelo
+# Module 3: Get started with Power Apps
+## Lab 3: How to build a model-driven app
 
-### Aviso importante (vigente a partir de noviembre de 2020):
-Se ha cambiado el nombre de Common Data Service a Microsoft Dataverse. Parte de la terminología de Microsoft Dataverse se ha actualizado. Por ejemplo, ahora las entidades se llaman tablas. A partir de ahora, los campos y los registros de las bases de datos de Dataverse se denominarán columnas y filas.
+### Important Notice (Effective November 2020):
+Common Data Service has been renamed to Microsoft Dataverse. Some terminology in Microsoft Dataverse has been updated. For example, entity is now table. Fields and records in Dataverse databases are now referred to as columns and rows.
 
-Las aplicaciones están actualizando la experiencia del usuario, pero algunas referencias a la terminología de Microsoft Dataverse, como entidad (de ahora en delante **tabla**), campo (de ahora en adelante **columna**) y registro (de ahora en adelante **fila**) pueden no estar actualizadas. Tenga esto en cuenta cuando trabaje en los laboratorios. Esperamos poder actualizar completamente el contenido pronto. 
+While the applications are in the process of updating their user experience, some references to terminology for Microsoft Dataverse like entity (now **table**), field (now **column**), and record (now **row**) may be out of date. Please keep this in mind as you work through the labs. We expect to have our content fully up to date very soon. 
 
-Si desea obtener más información y consultar la lista completa de los términos afectados, visite [¿Qué es Microsoft Dataverse?](https://docs.microsoft.com/es-es/powerapps/maker/common-data-service/data-platform-intro#terminology-updates).
+For more information and for a complete list of affected terms, please visit [What is Microsoft Dataverse?](https://docs.microsoft.com/en-us/powerapps/maker/common-data-service/data-platform-intro#terminology-updates)
 
-# Escenario
+# Scenario
 
-Bellows College es una institución educativa que tiene un campus con varios edificios. Los visitantes del campus están actualmente registrados en registros en papel. La información no se recaba de manera coherente y no hay forma de recopilar y analizar los datos sobre las visitas de todo el campus. 
+Bellows College is an educational organization with multiple buildings on campus. Campus visitors are currently recorded in paper journals. The information is not captured consistently, and there are no means to collect and analyze data about the visits across the entire campus. 
 
-La administración del campus querría modernizar el sistema de registro de visitantes de los edificios cuyo acceso esté controlado por el personal de seguridad y en los que los anfitriones deban anotar con antelación las visitas y dejar constancia de ellas.
+Campus administration would like to modernize their visitor registration system where access to the buildings is controlled by security personnel and all visits are required to be pre-registered and recorded by their hosts.
 
-A lo largo de este curso, creará aplicaciones e implementará la automatización para permitir que el personal de administración y seguridad de Bellows College administre y controle el acceso a los edificios en el campus. 
+Throughout this course, you will build applications and perform automation to enable the Bellows College administration and security personnel to manage and control access to the buildings on campus. 
 
-En este laboratorio, creará una aplicación basada en el modelo de Power Apps para permitir que el personal del campus administrativo administre los registros de visitas en todo el campus.
+In this lab, you will build a Power Apps model-driven app to allow the backoffice campus staff to manage visit records across the entire campus.
 
-# Pasos de alto nivel del laboratorio
+# High-level lab steps
 
-Como parte de la creación de la aplicación basada en modelo, deberá hacer lo siguiente:
+As part of creating the model-driven app, you will complete the following:
 
--   Crear una nueva aplicación basada en modelo llamada Administración del campus
+-   Create a new model-driven app named Campus Management
 
--   Editar la navegación de la aplicación para hacer referencia a las tablas requeridas
+-   Edit the app navigation to reference the required tables
 
--   Personalizar los formularios y las vistas de las tablas requeridas para la aplicación
+-   Customize the forms and views of the required tables for the app
 
-Trabajaremos con los siguientes componentes:
+We will work with the following components:
 
-- **Vistas**: las vistas permiten al usuario mostrar los datos existentes en la tabla del formulario.
+- **Views**: Views allow the user to display the existing data in the form table.
 
-- **Formularios**: aquí el usuario crea/actualiza nuevas filas en las tablas.
+- **Forms**: This is where the user creates/updates new rows in the tables.
 
-Ambos se integrarán a la aplicación basada en modelo para mejorar la experiencia del usuario.
+Both will be integrated to the model-driven app for a better user-experience.
 
-## Requisitos previos
+## Prerequisites
 
-* Haber finalizado el **Módulo 0, Laboratorio 0: Validación del entorno de laboratorio**
-* Haber finalizado el **Módulo 2, Laboratorio 1: Introducción a Microsoft Dataverse**
+* Completion of **Module 0 Lab 0 - Validate lab environment**
+* Completion of **Module 2 Lab 1 - Introduction to Microsoft Dataverse**
 
-## Cuestiones que conviene tener en cuenta antes de comenzar
+## Things to consider before you begin
 
--   ¿Qué cambios debemos hacer para mejorar la experiencia del usuario?
+-   What changes should we make to improve the user experience?
 
--   ¿Qué deberíamos incluir en una aplicación basada en modelo elaborada según el modelo de datos que hemos construido?
+-   What should we include in a model-driven app based on the data model we have built?
     
--   ¿Qué personalizaciones se pueden hacer en el mapa del sitio de una aplicación basada en modelo?
+-   What customizations can be made on the sitemap of a model-driven app?
 
 
-# Ejercicio 1: Personalizar vistas y formularios
+# Exercise \#1: Customize Views and Forms
 
-**Objetivo:** en este ejercicio, personalizará las vistas y formularios de las tablas creadas de manera personalizada que se utilizarán en la aplicación basada en modelo.
+**Objective:** In this exercise, you will customize views and forms of the custom created tables that will be used in the model-driven app.
 
-## Tarea 1: Editar el formulario de visita
+## Task \#1: Edit Visit Form
 
-1.  Inicie sesión en <https://make.powerapps.com> si aún no lo ha hecho.
+1.  Sign in to <https://make.powerapps.com> if you are not already signed in.
 
-2.  Seleccione su **Entorno**.
+2.  Select your **environment.**
 
-3.  Seleccione **Soluciones**.
+3.  Select **Solutions**.
 
-4.  Haga clic para abrir la solución de **Administración del campus**.
+4.  Click to open your **Campus Management** solution.
 
-5.  Haga clic para abrir la entidad **Visita**.
+5.  Click to open the **Visit** entity.
 
-6.  Seleccione la pestaña **Formularios** y seleccione para abrir el tipo de formulario **Principal**. 
+6.  Select the **Forms** tab and click to open the **Main** form type. 
 
-    > Por defecto, el formulario tiene dos campos: Nombre (campo principal) y Propietario.
+    > By default, the form has two fields: Name (Primary Field) and Owner.
     
-7.  Seleccione **+ Campo de formulario** y agregue los siguientes campos debajo del campo **Propietario**. Para ello, arrastre las columnas hasta el formulario o simplemente haga doble clic en los nombres de columna:
+7.  Select **+ Form field** and ddd the following fields below the **Owner** field by dragging columns to the form or simply clicking column names:
 
-    * **Edificio**
-    * **Visitante**
-    * **Inicio programado**
-    * **Fin programado**
-    * **Inicio real**
-    * **Fin real** 
+    * **Building**
+    * **Visitor**
+    * **Scheduled Start**
+    * **Scheduled End**
+    * **Actual Start**
+    * **Actual End** 
     
-8.  Arrastre el campo **Código** y suéltelo en el encabezado del formulario. 
+8.  Drag the **Code** column and drop it in the form header. 
 
-    > El encabezado está en la parte superior derecha del formulario. Es posible que deba minimizar el panel Propiedades del lado derecho de la pantalla para ver el campo en el formulario.
+    > The header is the top right area of the form. You may need to minimize the Properties panel on the right side of the screen to see the field on the form.
 
-9.  Con el campo **Código** seleccionado, marque la casilla de verificación **Solo lectura** en el panel Propiedades.
+9.  With the **Code** field still selected, check the checkbox for **Read-only** in the Properties panel.
 
-10.  Seleccione el campo **Propietario**. En el panel Propiedades, cambie la **Etiqueta de campo** a **Host**.
+10.  Select **Owner** field. In the Properties panel, change the **Field label** to **Host**
 
-11.  Haga clic en **Guardar** en la parte superior derecha y espere a que se termine de guardar.
+11.  Click **Save** at the top right and wait for the save to complete.
 
-12.  Haga clic en **Publicar** en la parte superior derecha y espere hasta que termine de publicarse.
+12.  Click **Publish** at the top right and wait for the publishing to complete.
 
-13.  Haga clic en **Atrás** en la parte superior izquierda de la pantalla. Debería haber vuelto a la
-     entidad Visita de la pestaña Formularios.
+13.  Click **Back** at the top left of the screen. You should now be back to the
+     Visit entity Forms Tab.
 
-## Tarea 2: Editar las vistas de las visitas
+## Task \#2: Edit Visit Views
 
-En esta tarea, modificaremos la vista predeterminada de Visitas activas y crearemos una nueva vista para las visitas de hoy.
+In this task, we will modify the default Active Visits view and create a new view for today's visits.
 
-1.  Seleccione la pestaña **Vistas** y haga clic para abrir la vista **Visitas activas**.
+1.  Select the **Views** tab and click to open the **Active Visits** view.
 
-2.  Para agregar los siguientes campos a la vista, haga clic o arrastre y suelte los campos:
+2.  Add the following fields to the view by either clicking or dragging and dropping the fields:
 
-    *  **Código**
-    *  **Visitante**
-    *  **Edificio**
-    *  **Inicio programado** 
-    *  **Fin programado**
+    *  **Code**
+    *  **Visitor**
+    *  **Building**
+    *  **Scheduled Start** 
+    *  **Scheduled End**
     
-3.  Haga clic en la columna **Creado en** y seleccione **Quitar**. Ahora el campo **Creado en** se quitará de la vista.
+3.  Click the **Created On** column and select **Remove**. Field **Created On** will now be removed from the view.
 
-4.  Haga clic en la columna **Nombre** y seleccione **Quitar**. Ahora el campo **Nombre** se quitará de la vista.
+4.  Click the **Name** column and select **Remove**. Field **Name** will now be removed from the view.
 
-5.  En el panel de Propiedades, a la derecha, haga clic en **Ordenar por...** y seleccione **Inicio programado**. Haga clic en **Inicio programado** otra vez para cambiar el orden a descendente.
+5.  In the Properties panel on the right, click **Sort by ...** and select **Scheduled Start**. Click on **Scheduled Start** again to change the order to descending.
 
-6.  Cambie el tamaño de los anchos de las columnas individuales para ajustarlos a los datos.
+6.  Resize the individual column widths to fit the data.
 
-7.  Haga clic en **Guardar** y espere hasta que se guarden los cambios.
+7.  Click **Save** and wait until the changes are saved.
 
-8.  Haga clic en **Publicar** y espere a que se complete la publicación.
+8.  Click **Publish** and wait for the publishing to complete.
 
-Ahora clonaremos la vista para crear una nueva para las visitas de hoy.
+Now, we will clone the view to create a new view for today's visits.
 
-9.  Pulse el vínculo **Editar filtros** en el panel Propiedades.
+9.  Press **Edit filters** link in the Properties panel.
 
-10.  Haga clic en **Agregar** y seleccione **Agregar fila**.
+10.  Click **Add**, select **Add row**.
 
-11.  Seleccione **Inicio programado** como campo y luego **Hoy** como condición en el menú desplegable. 
+11.  Select **Scheduled Start** as a field, then select **Today** as the condition in the drop-down. 
 
-12.  Haga clic en **...** en la fila **Estado** y haga clic en **Eliminar**. 
+12.  Click the **...** on the **Status** row and click **Delete**. 
 
-13.  Pulse **Aceptar** para guardar la condición. Ahora la vista está filtrada para mostrar solo los registros donde la fecha de inicio programada es hoy.
+13.  Press **Ok** to save the condition. The view is now filtered to show only records where the Scheduled Start date is today.
 
-14.  Agregue los campos **Inicio real** y **Fin real** a la vista. 
+14.  Add **Actual Start** and **Actual End** fields to the view. 
 
->**Nota:** Como ya no filtramos el estado de la vista, obtendremos todas las visitas de hoy, incluidas las completadas. Estos campos ayudarán a diferenciar las visitas completadas de las visitas en curso.
+    > **Note:** Since we no longer filter on the view status, we will get all today's visits including completed ones. These fields will help to differentiate completed visits and visits in progress.
 
-15.  Haga clic en la **flecha desplegable** situada junto al botón Guardar (tenga cuidado de no presionar el botón) y seleccione **Guardar como**.
+15.  Click on the **dropdown arrow** by the Save button (be careful not to press the button itself) and select **Save As**.
 
-16.  Cambie el nombre a **Visitas de hoy** y pulse **Guardar**.
+16.  Change the name to **Today's Visits** and press **Save**.
 
-17.  Haga clic en **Publicar** y espere a que se complete la publicación.
+17.  Click **Publish** and wait for the publishing to complete.
 
-# Ejercicio 2: Crear una aplicación basada en modelo
+# Exercise \#2: Create Model-Driven Application
 
-**Objetivo:** en este ejercicio creará la aplicación basada en modelo, personalizará el mapa del sitio y probará la aplicación.
+**Objective:** In this exercise, you will create the model-driven app, customize the sitemap, and test the app.
 
-> Verá varios campos que no se comentarán a medida que desarrolla su aplicación, sobre todo en los pasos correspondientes al mapa del sitio. Hemos tomado algunos atajos para hacer los laboratorios. En una implementación real, debería dar a estos elementos nombres lógicos.
+> You will see several fields not addressed as you build out your application, particularly on the sitemap steps. We have taken some short cuts in the interest of doing the labs. In a real implementation, you would give these items logical names.
 
-## Tarea 1: Crear la aplicación
+## Task \#1: Create Application
 
-1.  Abra la solución de Administración del campus si aún no está en ella.
+1.  Open your Campus Management solution if you are not already in it.
 
-    -   Inicie sesión en <https://make.powerapps.com>.
+    -   Sign in to <https://make.powerapps.com>
 
-    -   Mientras esté en su entorno, haga clic para abrir la solución de **Administración del campus**
-        .
+    -   While in your environment, click to open your **Campus Management**
+        solution.
     
-2.  Cree la aplicación basada en modelos
+2.  Create the Model-Driven Application
 
-    -   Haga clic en **Nuevo**, seleccione **Aplicación** y luego **Aplicación basada en modelo**. Esta acción abrirá una nueva ventana.
+    -   Click **New** and select **App** and then **Model-driven app**. This will open a new tab.
     
-    -   Escriba **[Su apellido] Administración del campus** para Nombre.
+    -   Enter **[Your Last Name] Campus Management** for Name.
 
-    -   Seleccione la casilla de verificación **Usar solución existente para crear la aplicación**.
+    -   Select **Use existing solution to create the App** checkbox
 
-    -   Seleccione **Siguiente**.
+    -   Select **Next**
 
-    -   Seleccione la solución **Administración del campus**.
+    -   Select your **Campus Management** solution
     
-    -   Haga clic en **Listo**.
+    -   Click **Done**
     
-3.  Haga clic en el icono de lápiz junto al **Mapa del sitio**.
+3.  Click the pencil icon next to **Site Map.**
 
-4.  Edite los títulos predeterminados
+4.  Edit the default titles
 
-    -   Seleccione **Nueva área**.
+    -   Select **New Area**.
 
-    -   Cambie el título de la nueva área a **Campus** en el panel de propiedades de la derecha.
+    -   Change the Title of the New Area to **Campus** in the properties pane on the right.
 
-    -   Seleccione **Nuevo grupo**.
+    -   Select **New Group**.
 
-    -   Cambie el título del nuevo grupo a **Seguridad** en el panel de propiedades de la derecha.
+    -   Change the Title of the New Group to **Security** in the properties pane on the right.
     
-5.  Agregue la tabla Contacto al mapa del sitio.
+5.  Add the Contact table to the sitemap
 
-    -   Seleccione **Nueva subárea**.
+    -   Select **New Subarea**.
 
-    -   En el panel **Propiedades**, seleccione **Entidad** en el menú desplegable
-        para **Tipo**.
+    -   In the **Properties** pane, select **Entity** from the dropdown
+        for **Type**.
 
-    -   Busque la tabla **Contacto** en la lista desplegable para **Entidad**.
+    -   Search for **Contact** table from the dropdown for **Entity**.
     
-6.  Agregue la tabla Visita al mapa del sitio.
+6.  Add the Visit table to the sitemap
 
-    -   Seleccione el grupo **Seguridad** y haga clic en **Agregar**.
+    -   Select **Security** group and click **Add**.
 
-    -   Seleccione **Subárea**.
+    -   Select **Subarea**.
 
-    -   Vaya al panel **Propiedades**.
+    -   Go to the **Properties** pane.
 
-    -   Seleccione **Entidad** en el menú desplegable para **Tipo** y busque
-        la tabla **Visita** en la lista desplegable para **Entidad**.
+    -   Select **Entity** from the dropdown for **Type** and search for
+        **Visit** table from the dropdown for **Entity**.
     
-7.  Agregue la tabla Edificio al mapa del sitio.
+7.  Add the Building table to the sitemap
 
-    -   Seleccione el área **Campus** y haga clic en **Agregar**.
+    -   Select **Campus** area and click **Add**.
     
-    -   Seleccione **Grupo**.
+    -   Select **Group**.
     
-    -   Especifique **Configuraciones** para **Título** en el panel **Propiedades**.
+    -   Enter **Settings** for **Title** in the **Properties** pane.
     
-    -   Con el área **Configuración** seleccionada, haga clic en **Agregar**.
+    -   With the **Settings** Area still selected, click **Add**.
     
-    -   Seleccione **Subárea**.
+    -   Select **Subarea**.
     
-    -   Vaya al panel **Propiedades**.
+    -   Go to the **Properties** pane.
     
-    -   Seleccione **Entidad** en la lista desplegable para **Tipo** y busque la tabla **Edificio** en la lista desplegable para **Entidad**.
+    -   Select **Entity** from the dropdown for **Type** and search for **Building** table from the dropdown for **Entity**.
 
-8.  Haga clic en **Guardar**. Ahora se mostrará la pantalla de carga mientras se guardan los cambios.
+8.  Click **Save**. This will show the loading screen while the changes are getting saved.
 
-9.  Haga clic en **Publicar** todas las personalizaciones y espere a que se complete la publicación.
+9.  Click **Publish** to publish the sitemap and wait for the publishing to complete.
 
-10.  Haga clic en **Guardar y cerrar** para cerrar el editor del mapa de sitio. 
+10.  Click **Save and Close** to close the sitemap editor. 
 
-> Verá que los activos de las entidades que se han agregado al mapa del sitio ahora están en la aplicación.
+    > You will see the assets for the entities that were added to the sitemap are now in the application.
      
-11.  Haga clic en **Guardar** en el Diseñador de aplicaciones.
+11.  Click **Save** on the App Designer.
 
-12.  Haga clic en **Validar** para validar los cambios realizados en la aplicación. 
+12.  Click **Validate** to validate the changes done in the application. 
 
->  Esto hará que se muestren algunas advertencias, pero podemos ignorarlas, ya que no hemos hecho referencia a una Vista y un Formulario específicos para las entidades, y los usuarios tendrán acceso a todas las Vistas y Formularios para las entidades **Visita**y**Edificio**.
+    >  This will show some warnings but we can ignore them, since we have not referenced a specific View and Form for the entities and the users will have access to all the Views and Forms for **Visit** and **Building** entities.
      
-13. Haga clic en **Publicar**.
+13. Click **Publish**
 
-14.  Haga clic en **Guardar y cerrar** para cerrar el diseñador de la aplicación.
+14.  Click **Save and Close** to close the app designer.
 
-15.  Haga clic en **Listo**.
+15.  Click **Done**.
 
-16.  Seleccione **Soluciones** y luego **Publicar todas las personalizaciones**.
+16.  Select **Solutions** and select **Publish all Customizations.**
 
-17.  Seleccione **Aplicaciones**; su aplicación ahora debería estar en la lista.
+17.  Select **Apps** and your application should now be listed.
 
-## Tarea 2: Probar la aplicación
+## Task \#2: Test Application
 
-1.  Inicie la aplicación
+1.  Start the application
 
-    -   Seleccione **Aplicaciones** y haga clic en su aplicación **Administración del campus** (si no ve su aplicación, es posible que deba actualizar el explorador).
+    -   Select **Apps** and click on your **Campus Management** app. (If you don't see your app at first, you may need to refresh your browser.)
 
-    -   La aplicación debería abrirse en una nueva ventana.
+    -   The application should open in a new window.
     
-2.  Cree un nuevo Contacto
+2.  Create new Contact
 
-    -   La aplicación debería abrirse en la vista **Contactos activos**.
+    -   The app should open to the **Active Contacts** view
 
-    -   Haga clic en **Nuevo** en el menú superior.
+    -   Click **New** from the top menu.
 
-    -   Establezca el **Nombre** como `John` y el **Apellido** como `Doe`.
+    -   Provide **First Name** as `John` and **Last Name** as `Doe`.
 
-    -   Establezca su correo electrónico personal como **Correo electrónico**. Se utilizará en un laboratorio futuro. 
+    -   Provide your personal email as **Email**. This will be used in a future lab. 
     
-    -   Haga clic en **Guardar y cerrar**.
+    -   Click **Save and Close**.
 
-    -   Ahora debería poder ver el contacto creado en la vista **Contactos activos**.
+    -   You should now see the created contact on the **Active Contacts** view.
     
-3.  Cree un nuevo edificio
+3.  Create new Building
 
-    -   Seleccione **Edificios** en el mapa del sitio.
+    -   Select **Buildings** from the sitemap.
 
-    -   Haga clic en **Nuevo**.
+    -   Click **New**.
 
-    -   Escriba el **Nombre** como `Microsoft Building`.
+    -   Enter the **Name** as `Microsoft Building`
         
-    -   Haga clic en **Guardar y cerrar**. Esto hará que se muestre el registro recién creado en
-        la vista de Edificios activos.
+    -   Click **Save and Close**. This will show the newly created record on
+        the Active Buildings View.
     
-4.  Cree una nueva visita
+4.  Create new Visit
 
-    -   Seleccione **Visitas** del mapa del sitio.
+    -   Select **Visits** from the sitemap.
     
-    -   Haga clic en **Nuevo**.
+    -   Click **New**.
     
-    -   Especifique los campos de la siguiente forma 
+    -   Enter the fields as following 
     
-        -   **Nombre**: `New test visit`
-        -   **Edificio**: seleccione Microsoft Building
-        -   **Visitante**: seleccione John Doe
-        -   **Inicio programado**: seleccione la fecha de mañana y las 14:00 como hora de inicio
-        -   **Fin programado**: seleccione la fecha de mañana y las 15:30 como hora de finalización
+        -   **Name**: `New test visit`
+        -   **Building**: select Microsoft Building
+        -   **Visitor**: select John Doe
+        -   **Scheduled Start**: select tomorrow's date and 2:00 PM as start time
+        -   **Scheduled End**: select tomorrow's date and 3:30 PM as end time
         
-    -   Haga clic en **Guardar y cerrar**. De esta forma se creará el registro, y debería poder verlo en la
-        vista de Visitas activas.
+    -   Click **Save and Close**. This will create the Visit and you should be able to see it on the
+        Active Visits View.
         
-    -   Cambie la vista a **Visitas de hoy**. Ya no debería poder ver la nueva visita en la vista, ya que está programada para mañana.
+    -   Change view to **Today's Visits**. You should no longer see the new visit in the view, since it is scheduled for tomorrow.
     
-5. Puede agregar más registros de prueba.
+5. You may add more test records.
 
-   La aplicación en ejecución debería verse aproximadamente de esta manera:
+   Your running app should look approximately like the following:
 
-![Muestra de una aplicación basada en modelo](media/3-model-app.png)
+![Sample model driven app](media/3-model-app.png)
 
-# Retos
+# Challenges
 
-* Seleccione vistas y formularios específicos para Visitas y Edificios
-* El personal de seguridad generalmente trabaja en un solo edificio. ¿Cómo les ofrecería una manera fácil de mostrar las visitas solo para un edificio seleccionado?
-* Restrinja el acceso a entidades específicas, por ejemplo, los Edificios deben ser de solo lectura para todos los miembros del personal, excepto los administradores.
-* ¿Qué paneles consideraría agregar a la aplicación?
+* Select specific views and forms for Visits and Buildings
+* Security personnel typically work in a single building. How would you provide an easy way for them to display visits only for a selected building?
+* Restrict access to specific entities, e.g. Buildings should be read-only for all staff members except the administrators
+* What Dashboards would you consider adding to the app?

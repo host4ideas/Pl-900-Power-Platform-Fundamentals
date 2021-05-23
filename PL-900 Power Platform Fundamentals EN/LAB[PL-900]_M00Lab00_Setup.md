@@ -1,90 +1,90 @@
 ---
 lab:
-    title: 'Laboratorio: Validar el entorno de laboratorio'
-    module: 'Módulo 0: Introducción al curso'
+    title: 'Lab: Validate lab environment'
+    module: 'Module 0: Course introduction'
 ---
 
-Módulo 0: Introducción al curso
+Module 0: Course introduction
 =================================
 
-## Laboratorio: Validar un entorno de laboratorio
+## Lab: Validate lab environment
 
-### Aviso importante (vigente a partir de noviembre de 2020):
-Se ha cambiado el nombre de Common Data Service a Microsoft Dataverse. Parte de la terminología de Microsoft Dataverse se ha actualizado. Por ejemplo, ahora las entidades se llaman tablas. A partir de ahora, los campos y los registros de las bases de datos de Dataverse se denominarán columnas y filas.
+### Important Notice (Effective November 2020):
+Common Data Service has been renamed to Microsoft Dataverse. Some terminology in Microsoft Dataverse has been updated. For example, entity is now table. Fields and records in Dataverse databases are now referred to as columns and rows.
 
-Las aplicaciones están actualizando la experiencia del usuario, pero algunas referencias a la terminología de Microsoft Dataverse, como entidad (de ahora en delante **tabla**), campo (de ahora en adelante **columna**) y registro (de ahora en adelante **fila**) pueden no estar actualizadas. Tenga esto en cuenta cuando trabaje en los laboratorios. Esperamos poder actualizar completamente el contenido pronto. 
+While the applications are in the process of updating their user experience, some references to terminology for Microsoft Dataverse like entity (now **table**), field (now **column**), and record (now **row**) may be out of date. Please keep this in mind as you work through the labs. We expect to have our content fully up to date very soon. 
 
-Si desea obtener más información y consultar la lista completa de los términos afectados, visite [¿Qué es Microsoft Dataverse?](https://docs.microsoft.com/es-es/powerapps/maker/common-data-service/data-platform-intro#terminology-updates).
+For more information and for a complete list of affected terms, please visit [What is Microsoft Dataverse?](https://docs.microsoft.com/en-us/powerapps/maker/common-data-service/data-platform-intro#terminology-updates)
 
-Escenario
+Scenario
 --------
 
-Bellows College es una institución educativa que tiene un campus con varios edificios. Los visitantes del campus están actualmente registrados en registros en papel. La información no se recaba de manera coherente y no hay forma de recopilar y analizar los datos sobre las visitas de todo el campus.
+Bellows College is an educational organization with multiple buildings on campus. Campus visitors are currently recorded in paper journals. The information is not captured consistently, and there are no means to collect and analyze data about the visits across the entire campus.
 
-La administración del campus querría modernizar el sistema de registro de visitantes de los edificios cuyo acceso esté controlado por el personal de seguridad y en los que los anfitriones deban anotar con antelación las visitas y dejar constancia de ellas.
+Campus administration would like to modernize their visitor registration system where access to the buildings is controlled by security personnel and all visits are required to be pre-registered and recorded by their hosts.
 
-A lo largo de este curso, creará aplicaciones e implementará la automatización para permitir que el personal de administración y seguridad de Bellows College administre y controle el acceso a los edificios en el campus.
+Throughout this course, you will build applications and perform automation to enable the Bellows College administration and security personnel to manage and control access to the buildings on campus.
 
-En este laboratorio del Módulo 0, adquirirá un inquilino de prueba de Power Platform y accederá al Centro de administración de Power Platform. En el Centro de administración creará el Entorno de **práctica** en el que realizará la mayor parte del trabajo de laboratorio.
+In this Module 0 lab, you will acquire a Power Platform trial tenant and access the Power Platform admin center. In the admin center, you will then create your **Practice** environment that you will do the majority of your lab work in.
 
-## Ejercicio 1: Configuración
+## Exercise 1 – Setup
 
-### Tarea 1: Adquirir el inquilino de prueba de Power Platform
+### Task 1 - Acquire your Power Platform trial tenant
 
-1. Copie sus **Credenciales de Microsoft 365** del proveedor de servicios de hosting del laboratorio autorizado.
+1. Copy your **Microsoft 365 credentials** from the Authorized Lab Hoster.
 
-2. Vaya a <https://powerapps.microsoft.com> y haga clic en **Empezar prueba**.
+2. Navigate to <https://powerapps.microsoft.com> and click **Start free.**
 
-3. Debajo de **Comenzar**, escriba la dirección de correo electrónico de sus credenciales de Microsoft 365 en el cuadro de texto **Escriba su dirección de correo electrónico del trabajo.**
+3. Under **Get started**, enter the email address from your Microsoft 365 credentials in the text box that says **Enter your work email address.**
 
-4. Verá un mensaje que le indica que ya tiene una cuenta con Microsoft. Seleccione **Conectarse**.
+4. You see a prompt that you have an existing account with Microsoft. Select **Sign in.**
 
-5. Escriba la contraseña proporcionada por el proveedor de servicios de hosting del laboratorio autorizado. 
+5. Enter the password provided by the Authorized Lab Hoster. 
 
-6. Seleccione **Sí** para permanecer conectado.
+6. Select **Yes** to stay signed in.
 
-### Tarea 2: Crear un entorno
+### Task \#2 – Create environment
 
-1.  Acceda a <https://admin.powerplatform.microsoft.com> e inicie sesión con sus credenciales de Microsoft 365 si se le pide de nuevo.
+1.  Access <https://admin.powerplatform.microsoft.com> and log in with your Microsoft 365 credentials if prompted again.
 
-2. Seleccione **Entornos** y haga clic en **+Nuevo**.
+2. Select **Environments** and click **+New.**
 
-    - En **Nombre**, escriba **[Mis iniciales] Práctica** (Ejemplo: Práctica AJ).
+    - For **Name**, enter **[My Initials] Practice.** (Example: AJ Practice.)
     
-    - En **Tipo**, seleccione **Prueba** (no seleccione la opción de prueba basada en suscripción).
+    - For **Type**, select **Trial** (do not select the Trial (subscription-based) option).
     
-    - Cambie el botón de alternancia en **¿Crear una base de datos para este entorno?** a **Sí**.
+    - Change the toggle on **Create a database for this environment?** to **Yes.**
     
-    - Deje todas las demás selecciones como predeterminadas y haga clic en **Siguiente**.
+    - Leave all other selections as default and click **Next.**
     
-    - En la siguiente pestaña, deje todas las selecciones como predeterminadas y haga clic en **Guardar**.
+    - On the next tab, leave all selections to default and click **Save.**
 
-3. Su Entorno de **práctica** debería mostrarse en la lista de entornos. 
+3. Your **Practice** environment should now show in the list of Environments. 
 
-    > El aprovisionamiento del entorno podría tardar unos minutos. Actualice la página si es necesario.
+    > Your environment may take a few minutes to provision. Refresh the page if needed.
 
-# Ejercicio 2: Aprovisionar un portal de Power Apps
+# Exercise \#2: Provision a Power Apps portal
 
-**Objetivo:** el aprovisionamiento de un portal de Power Apps puede llevar algún tiempo. En este ejercicio, creará un portal de Power Apps en su entorno para que se pueda iniciar el proceso de aprovisionamiento. Usará este portal en un laboratorio posterior.
+**Objective:** Provisioning a Power Apps portal can take some time. In this exercise, you will create your Power Apps portal in your environment so that the provisioning process can be initiated. You will use this portal in a later lab.
 
-## Tarea 1: Crear un portal de Power Apps
+## Task \#1: Create Power Apps portal
 
-1.  Inicie sesión en <https://make.powerapps.com>.
+1.  Sign in to <https://make.powerapps.com>
 
-2.  Si el **Entorno** que se muestra en la parte superior derecha no es su Entorno de práctica, seleccione su Entorno.
+2.  If the **Environment** displayed in the top right is not your Practice environment, click to select your Environment.
 
-3.  En la página principal, haga clic en el panel **Portal en blanco**, debajo de **Cree su propia aplicación**.
+3.  On the Home page, click on the **Portal from blank** panel under **Make your own app**
 
-    > Si no ve esta opción, intente alejar la imagen.
+    > If you do not see this option, try zooming out.
 
-4.  Dé nuevos detalles del portal.
+4.  Provide new portal details
 
-    -   Escriba **Visitantes de Bellows College** como **Nombre** del portal.
+    -   Enter **Bellows College Visitors** as the portal **Name**
 
-    -   Cree una URL única: **algo**.powerappsportals.com (si el nombre ya está en uso, elija uno diferente).
+    -   Provide a unique URL; **something**.powerappsportals.com (if the name has been taken, choose a different one)
 
-    -   Seleccione un **Idioma** base para el portal.
+    -   Select a base portal **Language**
 
-    -   Haga clic en **Crear**.
+    -   Click **Create**
 
-    > El proceso de aprovisionamiento del portal se ejecutará dentro de entre 30 y 45 minutos. No tiene que esperar, ya que esto continuará mientras pasa al siguiente módulo.
+    > The Portal provisioning process will run anywhere from 30 to 45 minutes. You do not have to wait, as this will continue while moving on to the next module.

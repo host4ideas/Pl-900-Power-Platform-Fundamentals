@@ -1,211 +1,211 @@
 ---
 lab:
-    title: 'Laboratorio 5: Cómo crear un portal de Power Apps'
-    module: 'Módulo 3: Comience con Power Apps'
+    title: 'Lab 5: How to build a Power Apps portal'
+    module: 'Module 3: Get started with Power Apps'
 ---
 
-# Módulo 3: Comience con Power Apps
+# Module 3: Get started with Power Apps
 
-## Laboratorio 4: Cómo crear un portal de Power Apps
+## Lab 4: How to build a Power Apps portal
 
-### Aviso importante (vigente a partir de noviembre de 2020):
-Se ha cambiado el nombre de Common Data Service a Microsoft Dataverse. Parte de la terminología de Microsoft Dataverse se ha actualizado. Por ejemplo, ahora las entidades se llaman tablas. A partir de ahora, los campos y los registros de las bases de datos de Dataverse se denominarán columnas y filas.
+### Important Notice (Effective November 2020):
+Common Data Service has been renamed to Microsoft Dataverse. Some terminology in Microsoft Dataverse has been updated. For example, entity is now table. Fields and records in Dataverse databases are now referred to as columns and rows.
 
-Las aplicaciones están actualizando la experiencia del usuario, pero algunas referencias a la terminología de Microsoft Dataverse, como entidad (de ahora en delante **tabla**), campo (de ahora en adelante **columna**) y registro (de ahora en adelante **fila**) pueden no estar actualizadas. Tenga esto en cuenta cuando trabaje en los laboratorios. Esperamos poder actualizar completamente el contenido pronto. 
+While the applications are in the process of updating their user experience, some references to terminology for Microsoft Dataverse like entity (now **table**), field (now **column**), and record (now **row**) may be out of date. Please keep this in mind as you work through the labs. We expect to have our content fully up to date very soon. 
 
-Si desea obtener más información y consultar la lista completa de los términos afectados, visite [¿Qué es Microsoft Dataverse?](https://docs.microsoft.com/es-es/powerapps/maker/common-data-service/data-platform-intro#terminology-updates).
+For more information and for a complete list of affected terms, please visit [What is Microsoft Dataverse?](https://docs.microsoft.com/en-us/powerapps/maker/common-data-service/data-platform-intro#terminology-updates)
 
-# Escenario
+# Scenario
 
-Bellows College es una institución educativa que tiene un campus con varios edificios. Actualmente se guarda un registro físico de las visitas al campus. La información no se recaba de manera coherente y no hay forma de recopilar y analizar los datos sobre las visitas de todo el campus.
+Bellows College is an educational organization with multiple buildings on campus. Campus visits are currently recorded in paper journals. The information is not captured consistently, and there are no means to collect and analyze data about the visits across the entire campus.
 
-La administración del campus desea ofrecer a los visitantes información sobre los edificios del campus. Los visitantes podrán ver la lista de edificios en un sitio web, que se creará con un portal de Power Apps.
+Campus administration would like to provide the visitors with the information about the buildings on campus. The visitors will be able to view the buildings list on a website, which will be built using a Power Apps portal.
 
-En este laboratorio, aprovisionará un portal de Power Apps y creará una página web de portales que mostrará una lista de los edificios del campus.
+In this lab, you will provision a Power Apps portal and create a portals webpage that will show a listing of the buildings on campus.
 
-# Pasos de alto nivel del laboratorio
+# High-level lab steps
 
-Deberá seguir el siguiente esquema para diseñar el portal de Power Apps:
+You will follow the below outline to design the Power Apps portal:
 
-* Aprovisionar un portal de Power Apps en el entorno de Dataverse
-* Crear y configurar una página web para mostrar una lista de los edificios
-* Crear un tema nuevo y aplicarlo al portal
+* Provision a Power Apps portal in the Dataverse environment
+* Create and configure a webpage to show a list of the buildings
+* Create a new theme and apply it to the portal
 
-## Requisitos previos
+## Prerequisites
 
-* Haber finalizado el **Módulo 0, Laboratorio 0: Validación del entorno de laboratorio**
-* Haber finalizado el **Módulo 2, Laboratorio 1: Introducción a Microsoft Dataverse**
+* Completion of **Module 0 Lab 0 - Validate lab environment**
+* Completion of **Module 2 Lab 1 - Introduction to Microsoft Dataverse**
 
-## Cuestiones que conviene tener en cuenta antes de comenzar
+## Things to consider before you begin
 
-* Las aplicaciones de los portales de Power Apps siempre se inician desde una plantilla en lugar de una aplicación en blanco. Debería haber creado su portal en el Laboratorio 0 del Módulo 0. Una vez haya aprovisionado un portal, tendrá páginas, menús y un tema predeterminado. 
+* Power Apps portals apps are always started from a template instead of a blank application. Your portal should have been created in Module 0 Lab 0. Once you provision a portal, it will already have pages, menus and a default theme. 
 
-# Ejercicio 1: Crear la Página web de portal
+# Exercise \#1: Create a Portal Webpage
 
-**Objetivo:** en este ejercicio, creará una nueva página web que mostrará contenido estático y una lista de edificios de Dataverse.
+**Objective:** In this exercise, you will create a new webpage that will display some static content as well as a list of buildings from Dataverse.
 
-## Tarea 1: Ir al portal
+## Task \#1: Navigate to Portal
 
-1.  Vaya a <https://make.powerapps.com>.
+1.  Navigate to <https://make.powerapps.com>.
 
-2.  Compruebe que se encuentra en el Entorno de práctica. Si no lo está, cambie el entorno en la parte superior derecha.
+2.  Verify that you are in your Practice Environment. If you are not, change the environment at the top right.
 
-3.  Haga clic en **Aplicaciones**.
+3.  Click on **Apps**
 
-4.  Busque la aplicación que indica el **Tipo** de **Portal**.
+4.  Locate the app that has the **Type** of **Portal**
 
-5.  Haga clic en el nombre de la aplicación para abrir el portal.
+5.  Click on the app name to open the portal
 
-    > Esto debería redirigirle a la página de aterrizaje del sitio web de su portal, en la que habrá un mensaje de bienvenida. Navegue por el portal para ver lo que se ha creado de manera predeterminada al aprovisionarlo. 
+    > You should be redirected to your portal website landing page with a welcome message. Navigate your portal to see what was created by default when you provisioned your portal. 
 
-## Tarea 2: Crear una página web
+## Task \#2: Create a Webpage
 
-1.  Abra Studio de portales de Power Apps
+1.  Open Power Apps portals Studio
 
-    -   Inicie sesión en <https://make.powerapps.com> (es posible que todavía puede lo tenga abierto en sus pestañas).
+    -   Sign in to <https://make.powerapps.com> (you may still have this open in your tabs)
 
-    -   Seleccione **Aplicaciones**
+    -   Select **Apps**
     
-    -   Busque la aplicación que indica el **Tipo** de **Portal**.
+    -   Locate the app that has the **Type** of **Portal**
 
-    -   Haga clic en los puntos suspensivos (**...**) a la derecha del nombre de la aplicación del portal y seleccione **Editar**.
+    -   Click on the ellipses (**...**) to the right of the portals app name and choose **Edit**
 
-    > Ahora se encuentra en Studio de portales de Power Apps. Aquí puede modificar y crear el contenido del portal.
+    > You are now in the Power Apps portals Studio. This is where you can modify and create portal content.
 
-2.  Cree una nueva página
+2.  Create a new page
 
-    -   En la barra de comandos, seleccione **Nueva página**.
+    -   From the command bar, select **New page**
 
-    -   Coloque el ratón sobre **Diseños fijos** y seleccione **Página con título**.
+    -   Mouse over **Fixed layouts** and choose **Page with title**
 
-3.  En el panel Propiedades, bajo **Mostrar**, cambie el **Nombre** de **Página nueva (1)** a `Building Directory`.
+3.  In the properties pane, under **Display** change the **Name** from **New page (1)** to `Building Directory`
 
-4.  En la **URL parcial**, cambie el valor a `building-directory` y pulse la tecla Tabulación para iniciar el guardado automático.
+4.  In the **Partial URL** change the value to `building-directory`, press the Tab key (to initiate auto-save)
 
-    > El título de la página ahora debería ser **Directorio de edificios**.
+    > The title of the page should now read **Building Directory**
     
-## Tarea 3: Agregar contenido estático
+## Task \#3: Add Static Content
 
-1.  Agregue una sección a la página web
+1.  Add a section to the webpage
 
-    -   En el lienzo (área que muestra la página web), seleccione la sección **Copia de página**. Es el cuadro grande alrededor de las 2 frases de texto que hay en el medio de la página.
+    -   On the canvas (area showing webpage), select the **Page Copy** section. This is the large box around the 2 sentences of text in the middle of your page.
 
-    -   En el cinturón de herramientas (lado izquierdo), seleccione el icono**Componentes**.
+    -   On the toolbelt (left side), select the **Components** icon
 
-    -   Seleccione **Sección de dos columnas** desde el área **Diseño de sección**.
+    -   Choose **Two columns section** from the **Section layout** area
 
-2.  Agregue un texto estático
+2.  Add Static Text
 
-    -   En el lienzo (área que muestra la página web), seleccione la columna de la izquierda.
+    -   On the canvas (area showing webpage), select the left column
 
-    -   En el cinturón de herramientas (lado izquierdo), seleccione el icono**Componentes**.
+    -   On the toolbelt (left side), select the **Components** icon
 
-    -   Seleccione **Texto** desde el área **Componentes del portal**.
+    -   Choose **Text** from the **Portal components** area
 
-    -   En la nueva área de texto, escriba lo siguiente:
+    -   In the new text area, enter the following text:
           ```
           The following is the building directory.
           ```
-    -   Seleccione el cuadro de texto sobre el que acaba de editar y haga clic en **Eliminar** en la barra de comandos para quitar el texto predeterminado.
+    -   Select the text box above the one you just edited, and click **Delete** on the command bar to remove the default text.
 
-3. Agregue una imagen
+3. Add an Image
 
-    -   En el lienzo (área que muestra la página web), seleccione la columna de la derecha.
+    -   On the canvas (area showing webpage), select the right column
 
-    -   En el cinturón de herramientas (lado izquierdo), seleccione el icono**Componentes**.
+    -   On the toolbelt (left side), select the **Components** icon
 
-    -   Elija **Imagen** desde el área **Componentes del portal**.
+    -   Choose **Image** from the **Portal components** area
 
-    -   En el panel Propiedades, haga clic en **Seleccionar una imagen**. Busque y seleccione el **Producto A.png**.
+    -   In the properties pane, click **Select an image**. Locate and select the **Product A.png**
     
-    -   En el panel Propiedades, haga clic en el menú desplegable de la sección **Formato** y cambie el **Ancho** al 70 % (asegúrese de escribir el %). Puede jugar con el tamaño de la imagen hasta que quede como desee.
+    -   In the properties pane, click the **Formatting** section drop-down and change the **Width** to 70% (be sure to type the %). You can play around with the sizing of the image until it is as desired.
 
-4.  Haga clic en **Navegar por el sitio web** para ver la página tal y como está por el momento.  Fíjese que ahora en el menú principal aparece la opción **Directorio de edificios**.
+4.  Click **Browse website** to view the page so far.  Notice that there is now the **Building Directory** option on the main menu.
 
-    > Es posible que deba configurar su explorador para permitir que aparezcan las ventanas emergentes.
+    > You may need to configure your browser to allow pop-ups.
 
-## Tarea 4: Agregar un componente de lista
+## Task \#4: Add a List Component
 
-1.  Vaya a la pestaña anterior y continúe con el paso 2. Si no está disponible, siga los pasos que se indican a continuación para regresar a esta ubicación.
+1.  Navigate to the previous tab and continue to step #2. If not available, follow the below steps to return to this location.
 
-    -   Inicie sesión en <https://make.powerapps.com> (es posible que todavía puede lo tenga abierto en sus pestañas).
+    -   Sign in to <https://make.powerapps.com> (you may still have this open in your tabs)
 
-    -   Busque la aplicación que indica el **Tipo** de **Portal**.
+    -   Locate the app that has the **Type** of **Portal**
 
-    -   Haga clic en los puntos suspensivos (**...**) y seleccione **Editar**.
+    -   Click on the ellipses (**...**) and choose **Edit**
     
-    -   En el cinturón de herramientas (lado izquierdo), seleccione la opción **Páginas**. 
+    -   On the toolbelt (left hand side), choose the **Pages** option 
 
-    -   Busque y seleccione la página **Directorio de edificios** que creó anteriormente.
+    -   Locate and select the **Building Directory** page you created earlier
     
-2.  Agregue un componente de lista a la página Directorio de edificios.
+2.  Add a list component to the Building Directory page
 
-    -   Seleccione la sección con dos columnas.
+    -   Select the section with two columns.
 
-    -   En el cinturón de herramientas (lado izquierdo), seleccione el icono**Componentes**.
+    -   On the toolbelt (left side), select the **Components** icon
 
-    -   Seleccione **Sección de una columna** desde el área **Diseño de sección** (aparecerá una sección debajo de la imagen y el texto en la página web).
+    -   Choose **One column section** from the **Section layout** area (a section will appear below the image and text on the webpage)
 
-    -   Seleccione la nueva sección de columna en el lienzo.
+    -   Select the new column section on the canvas
 
-    -   En el cinturón de herramientas (lado izquierdo), seleccione el icono**Componentes**.
+    -   On the toolbelt (left side), select the **Components** icon
 
-    -   Seleccione **Lista** desde el área **Componentes del portal** (aparecerá un componente de lista en la nueva sección).
+    -   Choose **List** from the **Portal Components** area (a list component will appear in the new section)
     
-3.  Configure el componente de lista.
+3.  Configure the list component
 
-    -   Seleccione el componente de lista en el lienzo
+    -   Select the list component on the canvas
 
-    -   En el panel Propiedades (lado derecho), escriba `Buildings List` en el campo **Nombre**.
+    -   In the properties pane (right side), enter in `Buildings List` in the **Name** field
 
-    -   En el campo **Tabla**, seleccione **Edificios (bc_edificio)** en la lista desplegable.
+    -   In the **Table** field, choose **Building (bc_building)** from the drop-down list
 
-    -   En **Vistas**, seleccione **Edificios activos**.
+    -   In the **Views**, choose **Active Buildings**
 
-    -   Deje el resto de la configuración como predeterminada.
+    -   Leave the remaining default settings
     
-4.  Haga clic en **Navegar por el sitio web** para ver la página. 
+4.  Click **Browse website** to view the page. 
 
-    > Debería poder ver la lista de Edificios de la base de datos de Dataverse en la página web.
+    > You should see the list of Buildings from your Dataverse database appear on the webpage.
 
-# Ejercicio 2: Cambiar el tema del portal
+# Exercise \#2: Change the Portal Theme
 
-**Objetivo:** en este ejercicio, creará un nuevo tema que modificará el esquema de color de su portal. 
+**Objective:** In this exercise, you will create a new theme that will alter the color scheme of your portal. 
 
-## Tarea 1: Aplicar y editar un tema
+## Task #1: Apply and Edit a Theme
 
-1.  Vaya a la pestaña anterior y continúe con el paso 2. Si no está disponible, siga los pasos que se indican a continuación para regresar a esta ubicación.
+1.  Navigate to the previous tab and continue to step #2. If not available, follow the below steps to return to this location.
 
-    -   Inicie sesión en <https://make.powerapps.com> (es posible que todavía puede lo tenga abierto en sus pestañas).
+    -   Sign in to <https://make.powerapps.com> (you may still have this open in your tabs)
 
-    -   Busque la aplicación que indica el **Tipo** de **Portal**.
+    -   Locate the app that has the **Type** of **Portal**
 
-    -   Haga clic en los puntos suspensivos (**...**) y seleccione **Editar**.
+    -   Click on the ellipses (**...**) and choose **Edit**
     
-2.  Aplique y personalice un tema básico
+2.  Apply and customize a basic theme
 
-    -   En el cinturón de herramientas (lado izquierdo), seleccione el icono **Temas**.
+    -   On the toolbelt (left side), select the **Themes** icon
     
-    -   Haga clic en la tecla de alternancia **Habilitar tema básico** para activar esta característica.
+    -   Click the toggle for **Enable basic theme** to turn this feature on.
     
-    -   En uno de los ajustes preestablecidos, haga clic en los puntos suspensivos(**...**) y seleccione **Personalizar**.
+    -   On one of presets, click the ellipses (**...**) and choose **Customize**
     
-    -   Se habrá creado una copia del tema básico. 
+    -   A copy of the basic theme has been created. 
     
-    -   En el panel Propiedades, pruebe a cambiar los colores y compruebe el efecto de estos cambios en el portal.
+    -   On the properties pane, play around with changing the colors and exploring the impact of these changes to your portal.
     
-    -   Cambie el nombre de su tema
+    -   Rename your theme
     
-3.  En la barra de comandos, haga clic en **Configuración de sincronización**.
+3.  On the command bar, click **Sync configuration**
 
-El diseño de la aplicación debería ser similar a la siguiente estructura:
+Your app layout should look similar to the following structure:
 
-![Portal de ejemplo](media/9-portallabresult.jpg)
+![Example portal](media/9-portallabresult.jpg)
 
-# Retos
+# Challenges
 
-* Cree una vista diferente de Edificios que solo muestre el Nombre del edificio. Deberá seleccionar **Navegar por el sitio web** desde el portal Studio para ver los cambios.
-* En el cinturón de herramientas, haga clic en el icono **Temas** y edite el CSS del tema personalizado.
-* Cree una página con el componente **Formulario** y modifique un componente de **Lista** para agregar o editar filas de Dataverse con el formulario.
-* Habilite **Permisos de entidad** en **Configuración** de un componente de **Lista**. ¿Qué pasa con los datos?
-* En el portal de Studio, seleccione el icono del Editor de código fuente `</>` para ver el origen de la página. Si se siente cómodo con HTML, haga algunas modificaciones y compruebe los resultados.
+* Create a different view of Buildings that just displays the Building Name. You will need to select **Browse website** from the Portal studio to see the changes.
+* On the toolbelt, click on the **Themes** icon and edit the CSS of your custom theme.
+* Create a page with the **Form** component and modify a **List** component to add or edit Dataverse rows with the form.
+* Enable **Entity Permissions** in a **List** component **Settings**, what happens to the data?
+* In the Portal studio, select the Source Code Editor icon `</>` to view the page source. If you are comfortable with HTML, make some modifications and view the results.

@@ -1,360 +1,360 @@
 ---
 lab:
-    title: 'Laboratorio 1: Modelado de datos'
-    module: 'Módulo 2: Introducción a Microsoft Dataverse'
+    title: 'Lab 1: Data Modeling'
+    module: 'Module 2: Introduction to Microsoft Dataverse'
 ---
 
-# Módulo 2: Introducción a Microsoft Dataverse
-## Laboratorio: Modelado de datos
+# Module 2: Introduction to Microsoft Dataverse
+## Lab: Data Modeling
 
-### Aviso importante (vigente a partir de noviembre de 2020):
-Se ha cambiado el nombre de Common Data Service a Microsoft Dataverse. Parte de la terminología de Microsoft Dataverse se ha actualizado. Por ejemplo, ahora las entidades se llaman tablas. A partir de ahora, los campos y los registros de las bases de datos de Dataverse se denominarán columnas y filas.
+### Important Notice (Effective November 2020):
+Common Data Service has been renamed to Microsoft Dataverse. Some terminology in Microsoft Dataverse has been updated. For example, entity is now table. Fields and records in Dataverse databases are now referred to as columns and rows.
 
-Las aplicaciones están actualizando la experiencia del usuario, pero algunas referencias a la terminología de Microsoft Dataverse, como entidad (de ahora en delante **tabla**), campo (de ahora en adelante **columna**) y registro (de ahora en adelante **fila**) pueden no estar actualizadas. Tenga esto en cuenta cuando trabaje en los laboratorios.
+While the applications are in the process of updating their user experience, some references to terminology for Microsoft Dataverse like entity (now **table**), field (now **column**), and record (now **row**) may be out of date. Please keep this in mind as you work through the labs.
 
-Si desea obtener más información y consultar la lista completa de los términos afectados, visite [¿Qué es Microsoft Dataverse?](https://docs.microsoft.com/es-es/powerapps/maker/common-data-service/data-platform-intro#terminology-updates).
+For more information and for a complete list of affected terms, please visit [What is Microsoft Dataverse?](https://docs.microsoft.com/en-us/powerapps/maker/common-data-service/data-platform-intro#terminology-updates)
 
-# Escenario
+# Scenario
 
-Bellows College es una institución educativa que tiene un campus con varios edificios. Actualmente se guarda un registro físico de las visitas al campus. La información no se recaba de manera coherente y no hay forma de recopilar y analizar los datos sobre las visitas de todo el campus. 
+Bellows College is an educational organization with multiple buildings on campus. Campus visits are currently recorded in paper journals. The information is not captured consistently, and there are no means to collect and analyze data about the visits across the entire campus. 
 
-La administración del campus querría modernizar el sistema de registro de visitantes de los edificios cuyo acceso esté controlado por el personal de seguridad y en los que los anfitriones deban anotar con antelación las visitas y dejar constancia de ellas.
+Campus administration would like to modernize their visitor registration system where access to the buildings is controlled by security personnel and all visits are required to be pre-registered and recorded by their hosts.
 
-A lo largo de este curso, creará aplicaciones e implementará la automatización para permitir que el personal de administración y seguridad de Bellows College administre y controle el acceso a los edificios en el campus. 
+Throughout this course, you will build applications and perform automation to enable the Bellows College administration and security personnel to manage and control access to the buildings on campus. 
 
-En este laboratorio, accederá a su entorno, creará una base de datos de Microsoft Dataverse y diseñará una solución para realizar un seguimiento de sus cambios. También creará un modelo de datos que cumpla con los siguiente requisitos:
+In this lab you will access your environment, create a Microsoft Dataverse database, and create a solution to track your changes. You will also create a data model to support the following requirements:
 
--   R1 – hacer un seguimiento de las ubicaciones (edificios) del campus en las que se producen las visitas
--   R2 – registrar información básica para identificar y hacer un seguimiento de los visitantes 
--   R3 – programar, registrar y administrar visitas 
+-   R1 – Track the locations (buildings) of the campus visits
+-   R2 – Record basic information to identify and track the visitors 
+-   R3 – Schedule, record, and manage visits 
 
-Por último, importará los datos de ejemplo en Microsoft Dataverse.
+Finally, you will import sample data into Microsoft Dataverse.
 
-# Pasos de alto nivel del laboratorio
+# High-level lab steps
 
-Para preparar sus entornos de aprendizaje tendrá que hacer lo siguiente:
+To prepare your learning environments you will:
 
-* Crear una solución y un editor
-* Agregar los componentes nuevos y existentes que se necesitan para cumplir con los requisitos de la aplicación. Consulte la descripción de los metadatos (tablas y relaciones) en el [documento del modelo de datos](https://raw.githubusercontent.com/MicrosoftLearning/PL-900-Microsoft-Power-Platform-Fundamentals/update-march-2021/Allfiles/Campus%20Management.png). Puede mantener presionada la tecla CTRL y hacer clic o clicar con el botón derecho en el vínculo para abrir el documento del modelo de datos en una nueva ventana.
+* create a solution and publisher
+* add both new and existing components required to meet the application requirements. Refer to the [data model document](https://raw.githubusercontent.com/MicrosoftLearning/PL-900-Microsoft-Power-Platform-Fundamentals/update-march-2021/Allfiles/Campus%20Management.png) for the metadata description (tables and relationships). You can hold CTRL+click or right click the link to open the data model document in a new window.
 
-Su solución contendrá varias tablas al completar todas las personalizaciones:
+Your solution will contain several tables upon completion of all the customizations:
 
--   Contacto
--   Edificio
--   Visita
+-   Contact
+-   Building
+-   Visit
 
-## Requisitos previos:
+## Prerequisites:
 
-* Haber finalizado el **Módulo 0, Laboratorio 0: Validación del entorno de laboratorio**
+* Completion of **Module 0 Lab 0 - Validate lab environment**
 
-## Cuestiones que conviene tener en cuenta antes de comenzar:
+## Things to consider before you begin:
 
-* Convención de la nomenclatura
+* Naming convention
 
-* Tipos de datos, restricciones (por ejemplo, la longitud máxima de un nombre)
+* Data types, restrictions (e.g. max length of a name)
 
-* Formato de datetime para facilitar la localización
+* Datetime formatting to support easy localization
 
-# Ejercicio 1: Cree la solución
+# Exercise \#1: Create Solution
 
-## Tarea 1: Crear la solución y el editor
+## Task \#1: Create Solution and Publisher
 
-1.  Cree la solución
+1.  Create Solution
 
-    -   Vaya a <https://make.powerapps.com>. Es posible que deba volver a autenticarse: haga clic en **Iniciar sesión** y siga las instrucciones en caso de que sea necesario.
+    -   Navigate to <https://make.powerapps.com>. You may need to reauthenticate - click **Sign in** and follow instructions if needed.
 
-    -   Haga clic en **Entorno**, en la esquina superior derecha de la pantalla, y elija su entorno en el menú desplegable.
+    -   Select your environment by clicking on **Environment** on the upper right corner of the screen and choosing your environment from the drop-down menu.
 
-    -   Seleccione **Soluciones** en el menú de la izquierda y haga clic en **Nueva solución**.
+    -   Select **Solutions** from the left menu and click **New Solution**.
 
-    -   Escriba **[Su apellido] Administración del campus** en **Nombre para mostrar**.
+    -   Enter **[Your Last Name] Campus Management** for **Display Name**.
 
-2.  Cree el editor
+2.  Create Publisher
 
-    -   Haga clic en la lista desplegable **Editor** y seleccione **+ Editor**
+    -   Click on the **Publisher** dropdown and select **+ Publisher**
 
-    -   En la ventana emergente, escriba **Bellows College** en **Nombre para mostrar** 
+    -   In the window that pops up, enter **Bellows College** for **Display Name** 
     
-    -   Escriba **bc** en **Prefijo**
+    -   Enter **bc** for **Prefix**
 
-    -   Haga clic en **Guardar y cerrar**
+    -   Click **Save and Close**
     
-    -   Haga clic en **Listo** en la ventana emergente.
+    -   Click **Done** in the pop-up window.
 
-3.  Complete la creación de la solución.
+3.  Complete the solution creation.
 
-    -   Luego, haga clic en el menú desplegable **Editor** y seleccione el editor **Bellows College**
-        que acaba de crear.
+    -   Now, click on the **Publisher** dropdown and select the **Bellows College**
+        publisher you just created.
 
-    -   Compruebe que la **Versión** está establecida como **1.0.0.0** 
+    -   Validate that **Version** is set to **1.0.0.0** 
     
-    -   Haga clic en **Crear**.
+    -   Click **Create**.
 
-# Ejercicio 2: Agregar tablas existentes y crear tablas nuevas
+# Exercise \#2: Add Existing and Create New Tables
 
-**Objetivo:** en este ejercicio, agregará la Tabla de contactos estándar y creará tablas personalizadas nuevas para Edificios y Visitas en la solución. 
+**Objective:** In this exercise, you will add the standard Contact table and create new custom tables for Buildings and Visits in the solution. 
 
-## Tarea 1: Agregar una tabla existente
+## Task \#1: Add Existing Table
 
-1.  Haga clic para abrir la solución **Administración del campus** que acaba de crear.
+1.  Click to open your **Campus Management** solution you just created.
 
-2.  Haga clic en **Agregar existente** y seleccione **Tabla**.
+2.  Click **Add Existing** and select **Table**.
 
-3.  Busque **Contacto** y selecciónela.
+3.  Locate **Contact** and select it.
 
-4.  Haga clic en **Siguiente**.
+4.  Click **Next**.
 
-5.  Haga clic en **Seleccionar componentes** debajo de Contacto.
+5.  Click **Select Components** under Contact.
 
-6.  Seleccione la pestaña **Vistas** y elija la vista **Contactos activos**. Haga clic en
-    **Agregar**.
+6.  Select the **Views** tab and select the **Active Contacts** view. Click
+    **Add**.
     
-7.  Haga clic de nuevo en **Seleccionar componentes**.
+7.  Click **Select Components** again.
 
-8.  Seleccione la pestaña **Formularios** y elija el formulario **Contacto**.
+8.  Select the **Forms** tab and select the **Contact** form.
     
-9.  Haga clic en **Agregar**.
+9.  Click **Add**.
 
-    > Debería tener **1 vista** y **1 formulario** seleccionados. 
+    > You should have **1 View** and **1 Form** selected. 
     
-10.  Vuelva a hacer clic en **Agregar**. Esto agregará la tabla de contactos con la vista y el formulario seleccionados a la solución que acaba de crear. 
+10.  Click **Add** again. This will add the Contact table with the selected View and Form to the newly created solution. 
     
-> Su solución ahora debería tener la siguiente tabla: Contacto.
+    > Your solution should now have one table: Contact.
 
-## Tarea 2: Crear la tabla Edificio
+## Task #2: Create Building Table
 
-1.  Debe mantener su explorador abierto en su solución Administración del campus. De lo contrario, abra la solución Administración del campus y siga estos pasos:
+1.  You should still have your browser open to your Campus Management solution. If not, open the Campus Management solution by following these steps:
 
-    * Regístrese en <https://make.powerapps.com> (si aún no lo ha hecho).
+    * Sign in to <https://make.powerapps.com> (if you are not already signed in)
     
-    * Seleccione **Soluciones** y haga clic para abrir la solución **[su apellido] Administración del campus**
-          que acaba de crear.
+    * Select **Solutions** and click to open the **[Your Last Name] Campus Management**
+          solution you just created.
           
-2.  Crear la tabla Edificio
+2.  Create Building table
 
-    -   Haga clic en **Nuevo** y seleccione **Tabla**.
+    -   Click **New** and select **Table**.
     
-    -   Escriba **Edificio** en **Nombre para mostrar**. 
+    -   Enter **Building** for **Display Name** 
     
-    -   Haga clic en **Crear**. Esto iniciará el aprovisionamiento de la tabla en segundo plano y podrá comenzar a agregar otras tablas y columnas.
+    -   Click **Create**. This will start provisioning the table in background while you can start adding other tables and columns.
 
-## Tarea 3: Crear la tabla Visita con columnas
+## Task #3: Create Visit Table and Columns
 
-La tabla **Visita** contendrá información sobre las visitas al campus, incluidos el edificio, el visitante, la hora programada y la hora real de cada visita. 
+The **Visit** table will contain information about the campus visits including the building, visitor, scheduled and actual time of each visit. 
 
-Nos gustaría asignar a cada visita un número único que el visitante pueda escribir e interpretar fácilmente cuando se le pida durante el proceso de registro de la visita.
+We would like to assign each visit a unique number that can be easily entered and interpreted by a visitor when asked during the visit check-in process.
 
-> Usamos el comportamiento **Independiente de la zona horaria** para registrar información de la fecha y hora, ya que el horario de una visita es siempre local según la ubicación del edificio y no debe cambiar cuando se consulta desde una zona horaria diferente. 
+> We use **Time zone independent** behavior to record date and time information, because time of a visit is always local to the location of the building and should not change when viewed from a different time zone. 
 
-1.  Seleccione la solución **Administración del campus**.
+1.  Select your **Campus Management** solution
 
-2. Crear la tabla Visita
+2. Create Visit table
 
-   * Haga clic en **Nuevo** y seleccione **Tabla**.
+   * Click **New** and select **Table**.
    
-   * Escriba **Visita** en **Nombre para mostrar**. 
+   * Enter **Visit** for **Display Name** 
    
-   * Haga clic en **Crear**. Esto iniciará el aprovisionamiento de la tabla en segundo plano y podrá comenzar a agregar otras columnas.
+   * Click **Create**. This will start provisioning the table in background while you can start adding other columns.
 
-3. Crear la columna Inicio programado
+3. Create Scheduled Start column
 
-   * Asegúrese de haber seleccionado la pestaña **Columnas** y haga clic en **Agregar columna**.
+   * Make sure you have the **Columns** tab selected and click **Add column**.
    
-   * Especifique **Inicio programado** en **Nombre para mostrar**.
+   * Enter **Scheduled Start** for **Display Name**.
    
-   * Seleccione **Fecha y hora** en **Tipo de datos**.
+   * Select **Date and Time** for **Data Type**.
    
-   * En **Obligatorio**, seleccione **Obligatorio**.
+   * In **Required**, select **Required**.
    
-   * Expanda la sección **Opciones avanzadas**.
+   * Expand **Advanced options** section.
    
-   * En **Comportamiento**, seleccione **Independiente de la zona horaria**.
+   * In **Behavior**, select **Time zone independent**.
    
-   * Haga clic en **Listo**.
+   * Click **Done**.
 
-4.  Crear la columna Fin programado
+4.  Create Scheduled End column
 
-    * Haga clic en **Agregar columna**.
+    * Click **Add column**.
     
-    * Especifique **Fin programado** en **Nombre para mostrar**.
+    * Enter **Scheduled End** for **Display Name**.
     
-    * Seleccione **Fecha y hora** en **Tipo de datos**.
+    * Select **Date and Time** for **Data Type**.
     
-    * En **Obligatorio**, seleccione **Obligatorio**.
+    * In **Required**, select **Required**.
     
-    * Expanda la sección **Opciones avanzadas**.
+    * Expand **Advanced options** section.
     
-    * En **Comportamiento**, seleccione **Independiente de la zona horaria**.
+    * In **Behavior**, select **Time zone independent**.
     
-    * Haga clic en **Listo**.
+    * Click **Done**.
     
-5.  Crear la columna Inicio real
+5.  Create Actual Start column
 
-    * Haga clic en **Agregar columna**.
+    * Click **Add column**.
     
-    * Especifique **Inicio real** en **Nombre para mostrar**.
+    * Enter **Actual Start** for **Display Name**.
     
-    * Seleccione **Fecha y hora** en **Tipo de datos**.
+    * Select **Date and Time** for **Data Type**.
     
-    * En el campo **Obligatorio**, déjelo como **Opcional**.
+    * In **Required**, leave this as **Optional**.
     
-    * Expanda la sección **Opciones avanzadas**.
+    * Expand **Advanced options** section.
     
-    * En **Comportamiento**, seleccione **Independiente de la zona horaria**.
+    * In **Behavior**, select **Time zone independent**.
     
-    * Haga clic en **Listo**.
+    * Click **Done**.
     
-6.  Crear la columna Fin real
+6.  Create Actual End column
 
-    * Haga clic en **Agregar columna**.
+    * Click **Add column**.
     
-    * Especifique **Fin real** en **Nombre para mostrar**.
+    * Enter **Actual End** for **Display Name**.
     
-    * Seleccione **Fecha y hora** en **Tipo de datos**.
+    * Select **Date and Time** for **Data Type**.
     
-    * En el campo **Obligatorio**, déjelo como **Opcional**.
+    * In **Required**, leave this as **Optional**.
     
-    * Expanda la sección **Opciones avanzadas**.
+    * Expand **Advanced options** section.
     
-    * En **Comportamiento**, seleccione **Independiente de la zona horaria**.
+    * In **Behavior**, select **Time zone independent**.
     
-    * Haga clic en **Listo**.
+    * Click **Done**.
     
-7.  Crear la columna Código
+7.  Create Code column
 
-    * Haga clic en **Agregar columna**.
+    * Click **Add column**.
     
-    * Especifique **Código** en **Nombre para mostrar**.
+    * Enter **Code** for **Display Name**.
     
-    * Seleccione **Autonumeración** en **Tipo de datos**.
+    * Select **Autonumber** for **Data Type**.
     
-    * Seleccione **Número prefijado de fecha** en **Tipo de autonumeración**.
+    * Select **Date prefixed number** for **Autonumber type**.
     
-    * Haga clic en **Listo**.
+    * Click **Done**.
     
-8.  Haga clic en **Guardar tabla**.
+8.  Click **Save Table**
 
-# Ejercicio 3: Crear Relaciones
+# Exercise \#3: Create Relationships
 
-**Objetivo:** en este ejercicio agregará relaciones entre las tablas.
+**Objective:** In this exercise, you will add relationships between the tables.
 
-## Tarea 1: Crear Relaciones
+## Task #1: Create Relationships
 
-1.  Asegúrese de que todavía puede ver la tabla **Visita** de su solución de **Administración del campus**. De lo contrario, vaya allí.
+1.  Ensure that you are still viewing the **Visit** table of your **Campus Management** solution. If not, navigate there.
 
-2.  Crear una relación entre Visita y Contacto
+2.  Create Visit to Contact relationship
 
-    * Seleccione la pestaña **Relaciones**.
+    * Select the **Relationships** tab.
     
-    * Haga clic en **Agregar relación** y seleccione **Varios a uno**.
+    * Click **Add Relationship** and select **Many-to-one**
     
-    * Seleccione **Contacto** en **Relacionados (uno)**. 
+    * Select **Contact** for **Related (One)** 
     
-    * Especifique **Visitante** en **Nombre para mostrar en la columna de búsqueda**. 
+    * Enter **Visitor** for **Lookup column display name** 
     
-    * Haga clic en **Listo**.
+    * Click **Done**.
     
-3.  Crear una relación entre Visita y Edificio
+3.  Create Visit to Building relationship
 
-    * Haga clic en **Agregar relación** y seleccione **Varios a uno**.
+    * Click **Add Relationship** and select **Many-to-one**
     
-    * Seleccione **Edificio** en **Relacionados (uno)**. 
+    * Select **Building** for **Related (One)** 
     
-    * Haga clic en **Listo**.
+    * Click **Done**.
     
-4.  Haga clic en **Guardar tabla**.
+4.  Click **Save Table**.
 
-5.  Seleccione **Soluciones** en el menú superior y haga clic en **Publicar todas las personalizaciones**.
+5.  Select **Solutions** from the top menu and click **Publish all customizations.**
 
-# Ejercicio 4: Importar datos
+# Exercise \#4: Import Data
 
-**Objetivo:** en este ejercicio importará datos de ejemplo a la base de datos de Dataverse.
+**Objective:** In this exercise you will import sample data into the Dataverse database.
 
-## Tarea 1: Importar una solución
+## Task #1: Import solution
 
-En esta tarea, importará una solución que contenga el flujo de Power Automate necesario para completar la importación de datos.
+In this task you will import a solution that contains the Power Automate flow required to complete data import.
 
-1. Debería tener el archivo **DataImport_managed.zip** almacenado en su Escritorio. De lo contrario, descargue la [Solución de importación de datos](https://github.com/MicrosoftLearning/PL-900-Microsoft-Power-Platform-Fundamentals/blob/update-march-2021/Allfiles/DataImport_managed.zip?raw=true).
+1. You should have the **DataImport_managed.zip** file stored on your Desktop. Download [Data Import Solution](https://github.com/MicrosoftLearning/PL-900-Microsoft-Power-Platform-Fundamentals/blob/update-march-2021/Allfiles/DataImport_managed.zip?raw=true) if you do not.
 
-2. Inicie sesión en <https://make.powerapps.com>.
+2. Sign in to <https://make.powerapps.com>.
 
-3. Seleccione su Entorno **de práctica [mis iniciales]** en la parte superior derecha, si aún no está seleccionado.
+3. Select your **[my initials] Practice** environment at the top right, if it is not already selected.
 
-4. Seleccione **Soluciones** en el panel de navegación izquierdo.
+4. Select **Solutions** in the left navigation panel.
 
-5. Haga clic en **Importar** y luego en **Examinar**. Examine y seleccione **DataImport_managed.zip** desde su Escritorio y luego pulse **Siguiente**.
+5. Click **Import**, then click **Browse**. Browse and select **DataImport_managed.zip** from your Desktop, and then press **Next**.
 
->   Es posible que reciba el siguiente mensaje:
+>   You may receive the following message:
 >
->   Faltan dependencias. Instale las siguientes soluciones antes de instalar esta...
+>   There are missing dependencies. Install the following solutions before installing this one...
 >
->   Este mensaje indica que el modelo de datos no está completo, el
->   prefijo del editor no es **bc** o los nombres de las tablas **Edificio** y **Visita**
->   difieren de los nombres indicados en los pasos anteriores.
+>   That message indicates that either the data model is not complete, the
+>   publisher prefix is not **bc**, or the **Building** and **Visit** table
+>   names differ from the names listed in the steps above.
 
-6. Pulse **Siguiente**. Se le pedirá que restablezca las conexiones. 
+6. Press **Next**. You should be prompted to re-establish connections. 
 
-7. Abra el desplegable **Seleccionar una conexión** y seleccione **+Nueva conexión**.
+7. Expand the **Select a connection** dropdown and select **+ New Connection**.
 
-8. Se abrirá una nueva ventana o pestaña del explorador. Seleccione **Crear** cuando se le pida para crear la conexión. Conéctese en caso de que sea necesario para completar la creación de la conexión.
+8. The new browser window or tab will open. Select **Create** when prompted to the connection. Sign in if required to complete creating the connection.
 
-9. Cierre la pestaña actual para volver a la tabla anterior **Importación de una solución**.
+9. Close the current tab so that you are now back to the previous **Import a Solution** tab.
 
-10. Asegúrese de que la conexión que acaba de crear esté seleccionada. Si no ve la conexión, haga clic en **Actualizar** para actualizar la lista de conexiones. 
+10. Ensure the connection you just created is selected. If you do not see your connection, click **Refresh** to refresh the list of connections. 
 
-11. Pulse **Importar**.
+11. Press **Import**.
 
-12. Espere hasta que se complete la importación.
+12. Wait until the import is complete.
 
-## Tarea 2: Importar datos  
+## Task #2: Import Data  
 
-1. Abra la solución **Importar datos**.
+1. Open **Data Import** solution.
 
-2. Compruebe el **Estado** del flujo **Datos de importación**.
+2. Check the **Status** of the **Import Data** flow.
 
-3. Si el **Estado** está **Desactivado**, seleccione **...** junto a **Importación de datos** y, luego, seleccione **Activar**.
+3. If **Status** is **Off**, select **...** next to **Import Data** then select **Turn On**.
 
-   > **Importante:** Si recibe un mensaje de error, compruebe que las tablas y los campos que creó coinciden con las instrucciones anteriores.
+   > **Important:** If you receive an error message, verify that the tables and columns you created match the instructions above.
 
-4. Abra el componente **Importación de datos**. Power Automate se abrirá en una nueva pestaña. 
+4. Open **Import Data** component. A new tab will open Power Automate. 
 
-5. Haga clic en **Comenzar** si se muestra en una ventana emergente. 
+5. Click **Get Started** if presented with a popup. 
 
-6. Haga clic en **Ejecutar** y luego en **Ejecutar flujo** cuando se le pida.
+6. Click **Run** then click **Run flow** when prompted.
 
-7. Haga clic en **Listo**.
+7. Click **Done**.
 
-8. Espere hasta que la instancia de flujo complete la ejecución. Puede actualizar la tabla **Historial de ejecución de 28 días** para ver cuándo se ha ejecutado el flujo. 
+8. Wait until the flow instance completes the run. You can refresh the **28-day run history** table to see when the flow has run. 
 
-    > El propósito de este flujo era generar datos de ejemplo para los próximos laboratorios. En la siguiente tarea, comprobará que la importación de datos se ha realizado correctamente. 
+    > The purpose of this flow was to generate example data for the upcoming labs. In the next task, you will verify that the data import was successful. 
 
-## Tarea 3: Comprobar la importación de datos
+## Task #3: Verify Data Import
 
-1. Vuelva a la pestaña anterior de Power Apps. Haga clic en la ventana emergente **Listo**. 
+1. Navigate back to the previous Power Apps tab. Click **Done** on the popup. 
 
-2. Seleccione **Soluciones** en la barra de navegación izquierda y abra su solución de **Administración del campus**.
+2. Select **Solutions** on the left navigation bar and open your **Campus Management** solution.
 
-2. Haga clic para abrir la tabla **Visita** y luego seleccione la pestaña **Datos**.
+2. Click to open the **Visit** table, then select the **Data** tab.
 
-3. Haga clic en **Visitas activas** en la esquina superior derecha para mostrar el selector de vistas y después seleccione **Todas las columnas**. Esto cambiará la vista que muestra los datos de la visita. 
+3. Click **Active Visits** in the top right-hand corner to display the view selector, then select **All columns**. This will change the view that is being used to display the Visit data. 
 
-    > Si no ve **Visitas activas** debido a que la resolución es más baja, debería poder ver un icono con forma de ojo en la misma ubicación.
+    > If you do not see **Active Visits** due to smaller resolution, you should see an eye icon in the same location.
 
-    > Si la importación se realizó correctamente, debería poder ver una lista de las filas de visitas.
+    > If the import was successful, you should see a list of visit rows.
 
-4. Haga clic en cualquier valor de la columna **Edificio** y confirme que el formulario Edificio se abre en otra ventana. 
+4. Click on any value in the **Building** column, confirm that the Building form opens in a separate window. 
 
-5. Cierre la ventana que acaba de abrir.
+5. Close the recently launched window.
 
-6. Haga clic en cualquier valor de la columna **Visitante** (es posible que deba desplazar la vista hacia la derecha) y confirme que el formulario Contacto se abre en otra ventana.
+6. Click on any value in the **Visitor** column (you may need to scroll the view to the right), confirm that the Contact form opens in a separate window.
 
-7. Cierre la ventana que acaba de abrir.
+7. Close the recently launched window.
 
-# Retos
+# Challenges
 
-* ¿Consideraría usar la actividad *cita* como parte de la solución? ¿Qué cambiaría?
-* ¿Cómo haría que el fin programado tenga lugar después del inicio programado? 
-* ¿Cómo agregaría la compatibilidad para múltiples reuniones durante una sola visita?
-* ¿Cómo garantizaría el acceso al edificio tanto para los contactos externos como para el personal interno?
-* ¿Cómo haría que las visitas a determinados edificios requieran la aprobación de la dirección? ¿Qué cambiaría el proceso de aprobación en el modelo de datos?
+* Would you consider using *appointment* activity as part of the solution? What would it change?
+* How could you enforce the scheduled end to be after the scheduled start? 
+* How could you add support for multiple meetings during a single visit?
+* How could you secure the building access not only for external contacts but for internal staff member as well?
+* How could you make visits to certain buildings require management approval? What would the approval process change in the data model?
 

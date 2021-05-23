@@ -1,211 +1,211 @@
 ---
 lab:
-    title: 'Laboratorio 3: Cómo crear una aplicación de lienzo, parte 2'
-    module: 'Módulo 3: Comience con Power Apps'
+    title: 'Lab 3: How to build a canvas app, part 2'
+    module: 'Module 3: Get started with Power Apps'
 ---
 
-# Módulo 3: Comience con Power Apps
-## Laboratorio 2: Cómo crear una aplicación de lienzo, parte 2
+# Module 3: Get started with Power Apps
+## Lab 2: How to build a canvas app, part 2
 
-### Aviso importante (vigente a partir de noviembre de 2020):
-Se ha cambiado el nombre de Common Data Service a Microsoft Dataverse. Parte de la terminología de Microsoft Dataverse se ha actualizado. Por ejemplo, ahora las entidades se llaman tablas. A partir de ahora, los campos y los registros de las bases de datos de Dataverse se denominarán columnas y filas.
+### Important Notice (Effective November 2020):
+Common Data Service has been renamed to Microsoft Dataverse. Some terminology in Microsoft Dataverse has been updated. For example, entity is now table. Fields and records in Dataverse databases are now referred to as columns and rows.
 
-Las aplicaciones están actualizando la experiencia del usuario, pero algunas referencias a la terminología de Microsoft Dataverse, como entidad (de ahora en delante **tabla**), campo (de ahora en adelante **columna**) y registro (de ahora en adelante **fila**) pueden no estar actualizadas. Tenga esto en cuenta cuando trabaje en los laboratorios. Esperamos poder actualizar completamente el contenido pronto.  
+While the applications are in the process of updating their user experience, some references to terminology for Microsoft Dataverse like entity (now **table**), field (now **column**), and record (now **row**) may be out of date. Please keep this in mind as you work through the labs. We expect to have our content fully up to date very soon.  
 
-Si desea obtener más información y consultar la lista completa de los términos afectados, visite [¿Qué es Microsoft Dataverse?](https://docs.microsoft.com/es-es/powerapps/maker/common-data-service/data-platform-intro#terminology-updates).
+For more information and for a complete list of affected terms, please visit [What is Microsoft Dataverse?](https://docs.microsoft.com/en-us/powerapps/maker/common-data-service/data-platform-intro#terminology-updates)
 
-# Escenario
+# Scenario
 
-Bellows College es una institución educativa que tiene un campus con varios edificios. Actualmente se guarda un registro físico de las visitas al campus. La información no se recaba de manera coherente y no hay forma de recopilar y analizar los datos sobre las visitas de todo el campus. 
+Bellows College is an educational organization with multiple buildings on campus. Campus visits are currently recorded in paper journals. The information is not captured consistently, and there are no means to collect and analyze data about the visits across the entire campus. 
 
-La administración del campus querría modernizar el sistema de registro de visitantes de los edificios cuyo acceso esté controlado por el personal de seguridad y en los que los anfitriones deban anotar con antelación las visitas y dejar constancia de ellas.
+Campus administration would like to modernize their visitor registration system where access to the buildings is controlled by security personnel and all visits are required to be pre-registered and recorded by their hosts.
 
-A lo largo de este curso, creará aplicaciones e implementará la automatización para permitir que el personal de administración y seguridad de Bellows College administre y controle el acceso a los edificios en el campus. 
+Throughout this course, you will build applications and perform automation to enable the Bellows College administration and security personnel to manage and control access to the buildings on campus. 
 
-En la parte 2 de este laboratorio, creará, diseñará y compilará una aplicación de lienzo Power Apps que el personal de seguridad podrá utilizar en las entradas del edificio para confirmar y registrar rápidamente a los visitantes.
+In part 2 of this lab, you will create design and build a Power Apps canvas app that the security personnel will use at the building entrances to quickly confirm and register the visitors.
 
-# Pasos de alto nivel del laboratorio
+# High-level lab steps
 
-Seguirá el siguiente esquema para diseñar la aplicación de lienzo:
+You will follow the below outline to design the canvas app:
 
--   Crear la aplicación con el factor de forma del teléfono
--   Conectarse a Dataverse como origen de datos
--   Capturar la entrada (código de visitante) y ubicar la fila de visitante
--   Configurar un control de visor de formularios para mostrar la información del visitante
--   Usar una vista de Dataverse para rellenar la galería
--   Administrar el proceso de entrada y salida de un visitante
+-   Create the app using the phone form factor
+-   Connect to Dataverse as a data source
+-   Capture the input (visitor code) and locate the visitor row
+-   Configure a form viewer control to show the visitor information
+-   Use a Dataverse view to populate the gallery
+-   Handle checking-in and checking-out process for a visitor
 
-## Requisitos previos
+## Prerequisites
 
-* Haber finalizado el **Módulo 0, Laboratorio 0: Validación del entorno de laboratorio**
-* Haber finalizado el **Módulo 2, Laboratorio 1: Introducción a Microsoft Dataverse**
+* Completion of **Module 0 Lab 0 - Validate lab environment**
+* Completion of **Module 2 Lab 1 - Introduction to Microsoft Dataverse**
 
-## Cuestiones que conviene tener en cuenta antes de comenzar
+## Things to consider before you begin
 
--   ¿Para qué información necesitaría un responsable de seguridad tener acceso rápido?
--   ¿Qué debería pasar si el código de visitante no es válido?
--   ¿Qué debería pasar si el visitante llega fuera de las horas programadas?
+-   What information would a security officer need quick access to?
+-   What should happen if visitor code is invalid?
+-   What should happen if the visitor arrives outside of the scheduled hours?
 
-# Ejercicio 1: Crear una aplicación de lienzo de seguridad
+# Exercise \#1: Create Security Canvas App
 
-**Objetivo:** en este ejercicio aprenderá a crear una aplicación de lienzo.
+**Objective:** In this exercise, you will create a canvas app.
 
-## Tarea 1: Crear una aplicación de lienzo
+## Task \#1: Create Canvas App
 
-1.  Abra la solución de Administración del campus.
+1.  Open your Campus Management solution.
 
-    -   Inicie sesión en <https://make.powerapps.com>.
+    -   Sign in to <https://make.powerapps.com>
 
-    -   Si el Entorno que se muestra en la parte superior derecha no es su Entorno de práctica, seleccione su **Entorno**. 
+    -   If the Environment displayed in the top right is not your Practice environment, select your **Environment**. 
 
-    -   Seleccione **Soluciones**.
+    -   Select **Solutions**.
 
-    -   Haga clic para abrir la solución de **Administración del campus**.
+    -   Click to open your **Campus Management** solution.
     
-2.  Cree una nueva aplicación de lienzo
+2.  Create new canvas application
 
-    -   Haga clic en **Nuevo** y seleccione **Aplicación. \| Aplicación de lienzo \| Factor de forma del teléfono**.
-        Esto abrirá el Editor de aplicaciones en una Nueva ventana.
+    -   Click **New** and select **App \| Canvas App \| Phone Form Factor**.
+        This will open the App Editor in a New window.
         
-    -   Haga clic en **Omitir** si se muestra con el cuadro de diálogo Bienvenido a Power Apps Studio.
+    -   Click **Skip** if presented with the Welcome to Power Apps Studio dialogue.
     
-3.  Guarde la aplicación de lienzo.
+3.  Save the canvas app
 
-    -   Haga clic en **Archivo** y seleccione **Guardar como**.
+    -   Click **File** and select **Save As**.
     
-    -   Compruebe si **La nube** está seleccionada. 
+    -   Check if **The cloud** is selected. 
     
-    -   Escriba **(Su apellido) Seguridad del campus** como Nombre y haga clic en **Guardar**.
+    -   Enter **[Your Last Name] Campus Security** for Name and click **Save**.
         
-    -   Haga clic en la flecha **Atrás** de la parte superior izquierda (debajo de Power Apps) para volver a la aplicación.
+    -   Click the **Back** arrow at the top left (below Power Apps) to return to the app.
 
-3.  Conectarse al origen de datos (Visitas)
+3.  Connect to data source (Visits)
 
-    -   Haga clic en **Vista \| Orígenes de datos**
+    -   Click **View \| Data sources**
     
-    -   Haga clic en **+Agregar datos**.
+    -   Click **+ Add Data**
 
-    -   Haga clic en **Ver todas las entidades** (o tablas).
+    -   Click **See all entities** (or tables)
     
-    -   Seleccione **Visitas** y espere a que la tabla Visita se muestre debajo de la pestaña Datos.
+    -   Select **Visits** and wait for the Visit table to display on the Data tab.
     
-4.  Para conservar el trabajo en curso, haga clic en **Archivo** y luego en **Guardar**. Utilice la flecha Atrás para volver a la aplicación.
+4.  To preserve work in progress, click **File** then click **Save**. Use the back arrow to return to the app.
 
-## Tarea 2: Mostrar la información del visitante
+## Task \#2: Display Visitor information
 
-1.  Agregue un cuadro de búsqueda
+1.  Add search box
 
-    -   Seleccione la pestaña **Vista de árbol** en la barra de navegación izquierda.
+    -   Select the **Tree View** tab on the left navigation bar.
     
-    -   Seleccione **Pantalla1**.
+    -   Select **Screen1**.
     
-    -   Vaya a la pestaña **Insertar**.
+    -   Go to the **Insert** tab.
     
-    -   Haga clic en **Texto** y seleccione **Entrada de texto**.
+    -   Click **Text** and select **Text input**.
     
-2.  Edite el objeto de la entrada de texto
+2.  Edit the text input object
 
-    -   Con el objeto de la entrada de texto seleccionado, seleccione el texto de la propiedad **Predeterminado** y borre el valor.
+    -   While still selecting the Text input object, select the text in the **Default** property and clear the value.
     
-    -   Seleccione la propiedad **Sugerencia** y escriba `“Enter visitor code”` como valor (incluidas las comillas dobles).
+    -   Select **Hint Text** property and enter `"Enter visitor code"` as the value (including double quotes)
     
-    -   Haga clic en **...** junto al nombre del control en la vista de árbol (TextInput1), seleccione **Cambiar nombre** y cambie el nombre a `textCode`.
+    -   Click on **...** next to the control name in tree view (TextInput1), select **Rename**, change the name to `textCode`
     
-3.  Agregue una vista de formulario
+3.  Add a form view
 
-    -   En la pestaña **Insertar**, haga clic en **Formularios**  y luego elija **Pantalla** (puede que deba hacer clic en la flecha que indica hacia abajo del lado derecho para ver Formularios).
+    -   On **Insert** tab click **Forms**  then select **Display** (you may need to click the down arrow on the right side of the ribbon to see Forms)
    
-    -   Arrastre el formulario a su posición y alinéelo con la parte inferior de la pantalla.
+    -   Drag to position the form and align with the bottom of the screen
    
-    -   Mientras selecciona el formulario nuevo, seleccione la propiedad **DataSource** y luego seleccione **Visitas**.
+    -   While still selecting the new form, select **DataSource** property and select **Visits**
    
-    -   En el panel Propiedades, seleccione **Horizontal** como **Diseño**.
+    -   In the properties pane select **Horizontal** as **Layout**
 
-4.  Edite la vista del formulario.
+4.  Edit form view
 
-    -   Con el formulario nuevo aún seleccionado, haga clic en **Editar campos**.
+    -   While still selecting the new form, click **Edit fields**
 
-    -   Quite los campos **Nombre** y **Creado en**.
+    -   Remove both the **Name** and **Created On** fields
 
-    -   Haga clic en **Agregar campo** y seleccione los siguientes campos: **Fin real**, **Inicio real**, **Creación**, **Fin programado**, **Inicio programado**, **Visitante**
+    -   Click **Add field** and select the following fields: **Actual End**, **Actual Start**, **Building**, **Scheduled End**, **Scheduled Start**, **Visitor**
    
-    -   Pulse **Agregar**.
+    -   Press **Add**
    
-    -   Para cambiar el orden de los campos seleccionados, arrastre las tarjetas de campo de la lista. El orden recomendado es el siguiente: Visitante, Edificio, Inicio programado, Fin programado, Inicio real, Fin real (puede contraer los campos para arrastrarlos más fácilmente).
+    -   Change the order of the selected fields by dragging the field cards in the list. Recommended order is: Visitor, Building, Scheduled Start, Scheduled End, Actual Start, Actual End (you can collapse the fields to make them easier to drag)
    
-    -   Haga clic en la **X** para cerrar el panel Campos
+    -   Click the **X** to close the Fields pane
    
-5.  Con la vista de formulario seleccionada, seleccione la pestaña Avanzado del panel Propiedades. Seleccione la propiedad **Elemento** y escriba `LookUp(Visits, Code = textCode.Text)` 
+5.  While still selecting the form view, select the Advanced tab on the Properties pane. Select **Item** property and enter `LookUp(Visits, Code = textCode.Text)` 
 
-6.  Para conservar el trabajo en curso, haga clic en **Archivo** y luego en **Guardar**. Utilice la flecha Atrás para volver a la aplicación.
+6.  To preserve work in progress, click **File** then click **Save**. Use the back arrow to return to the app.
 
-7.  Prepárese para probar la aplicación
+7.  Prepare to test the app
 
-    -   Vaya a la pestaña del explorador que contiene la solución.
+    -   Switch to the browser tab containing the solution
 
-    -   Haga clic en **Listo** en la ventana emergente.
+    -   Click **Done** in the pop-up window
    
-    -   Seleccione la tabla **Visitas**.
+    -   Select **Visit** table
    
-    -   Seleccione la pestaña **Datos**.
+    -   Select **Data** tab
    
-    -   Para abrir el selector de vistas, en la parte superior derecha, haga clic en el nombre de la vista actual, **Visitas activas**.
+    -   Open the View Selector in the top right by clicking the current View name, **Active Visits**
    
-    -   Cambie la vista a **Todas las columnas**.
+    -   Change the View to **All columns**
    
-    -   Busque una fila de visita que no tenga un valor de Inicio real o Fin real (por ejemplo, con las dos columnas en blanco). Seleccione y copie el **Código** para esta Visita.
+    -   Locate a Visit row that does not have an Actual Start or Actual End value (i.e., both columns are blank). Select and copy the **Code** for this Visit.
 
-8.  Pruebe la aplicación
+8.  Test the app
 
-    -   Vaya a la pestaña del explorador con la aplicación y pulse **F5** o haga clic en el icono **Reproducir** en la esquina superior derecha para obtener una versión preliminar de la aplicación.
+    -   Switch to the browser tab with the app, press **F5** or click the **Play** icon at the upper-right corner to preview the app.
    
-    -   Pegue el valor copiado en el cuadro de texto de búsqueda y compruebe que el registro se muestra en el formulario.
+    -   Paste the copied value into the search textbox, verify that the record is displayed in the form
    
-9.  Borre el contenido del cuadro de texto de búsqueda.
+9.  Clear the search textbox contents.
    
-10.  Pulse **ESC** para salir de la aplicación en ejecución.
+10.  Press **ESC** to exit the running app.
 
-## Tarea 3: Agregar botones de entrada y salida
+## Task \#3: Add Check In and Check Out Buttons
 
-En esta tarea, crearemos botones para que el usuario se registre y salga de su Visita. 
+In this task, we will create buttons for the user to check in and check out of their Visit. 
 
-1. Guarde los resultados de búsqueda en una variable para reutilizarlos en el control.
+1. Save search results in a variable to reuse across the control
 
-    * Seleccione el control **textCode**.
+    * Select **textCode** control
    
-    * En el panel Propiedades, seleccione la pestaña **Avanzado** y la propiedad **OnChange**.
+    * In the properties pane, select the **Advanced** tab and select **OnChange** property
    
-    * Escriba la siguiente expresión: `Set(Visit, LookUp(Visits, Code = textCode.Text))`.
+    * Enter the following expression `Set(Visit, LookUp(Visits, Code = textCode.Text))`
     
-    > De esta forma, la visita se guardará en una variable global cuando un usuario busque en el cuadro de búsqueda de textCode. Esto nos permitirá usar la variable *Visit* en toda la aplicación sin necesidad de volver a escribir toda la expresión de búsqueda.
+    > This will save the visit in a global variable when a user searches in the textCode searchbox. That allows us to use the variable *Visit* throughout the app without the need to re-enter the entire lookup expression.
 
-2. Agregue un botón de entrada
+2. Add Check In Button
 
-   * Seleccione la pestaña **Insertar**.
+   * Select **Insert** tab
    
-   * Haga clic en **Botón**.
+   * Click **Button**
    
-   * En el panel Propiedades, cambie la propiedad **Texto** del botón a “`Check In`” (puede escribir dentro de las comillas existentes).
+   * In the properties pane, change the button **Text** property to "`Check In`" (you can type within the existing quotes)
    
-   * Haga clic en **...** junto al nombre del botón en una vista de árbol (Button 1), seleccione **Cambiar nombre** y cámbielo a `CheckInButton`.
+   * Click on **...** next to the button name in tree view (Button1), select **Rename**, change the name to `CheckInButton`
 
-3. Agregue un botón de salida.   
+3. Add Check Out Button   
 
-   * Haga clic en **Botón** en la pestaña Insertar para agregar otro botón.
+   * Click **Button** on the Insert tab to insert another button
    
-   * En el panel Propiedades, cambie la propiedad **Texto** del botón a "`Check Out`" (puede escribir dentro de las comillas existentes).
+   * In the properties pane, change the button **Text** property to "`Check Out`" (you can type within the existing quotes)
    
-   * Cambie el nombre del botón a `CheckOutButton`.
+   * Rename the button as `CheckOutButton`
    
-   * Coloque los botones debajo del cuadro de búsqueda, con **Entrada** encima de **Salida** 
+   * Position the buttons below the search box, with **Check In** above **Check Out** 
    
-## Tarea 4: Habilitar y deshabilitar botones según los datos de las visitas
+## Task \#4: Enable and disable buttons depending on visit data
 
-Una vez que los usuarios han buscado la visita, queremos que utilicen el botón Entrada para registrarla. Nos gustaría habilitar el botón **Entrada** para cuando el registro de visita se haya localizado (es decir, que no esté en blanco), el estado del registro esté activo y la visita aún no haya comenzado, es decir, cuando el valor de inicio real esté en blanco.
+Once users have looked up the visit, we would like them to use the Check In button to check in for that visit. We would like to enable **Check In** button when the visit record has been located (not blank), record status is active, and the visit has not started yet, i.e. the actual start value is blank.
 
-1. Seleccione el **botón Entrada** y haga clic en la propiedad **Modo de presentación** del botón en la pestaña Propiedades.
+1. Select the **Check In button** and click on the **Display Mode** property of the button in the Properties tab
 
-2. Escriba la siguiente expresión en la barra de funciones:
+2. Enter the expression below in the function bar:
 
       ```
       If(!IsBlank(Visit) 
@@ -216,19 +216,19 @@ Una vez que los usuarios han buscado la visita, queremos que utilicen el botón 
       )
       ```
 
-   La expresión se puede dividir de la siguiente manera:
+   The expression can be broken down as following:
 
-   * **!IsBlank(Visit)**: se encontró el registro de visita
-   * **&&**: operador lógico AND
-   * **Visit.Status = 'Status (Visits)'.Active**: el estado del registro es *Activo*
-   * **IsBlank(Visit.'Actual Start')**: el campo Inicio activo no contiene ningún dato
-   * **DisplayMode.Edit, DisplayMode.Disabled**: si se cumplen las condiciones anteriores, el botón se podrá editar. De lo contrario, el botón permanecerá deshabilitado.
+   * **!IsBlank(Visit)** - visit record was found
+   * **&&** - logical AND operator
+   * **Visit.Status = 'Status (Visits)'.Active** status of the record is *Active*
+   * **IsBlank(Visit.'Actual Start')** - Active Start field does not have any data in it
+   * **DisplayMode.Edit, DisplayMode.Disabled** - If the above conditions are met, the button will become editable. If not, the button will remain disabled.
 
-Nos gustaría habilitar el botón **Salida** para cuando el registro de visita se haya localizado (es decir, que no esté en blanco), el estado del registro esté activo y la visita ya haya comenzado, es decir, cuando el valor de inicio real no esté en blanco.
+We would like to enable **Check Out** button when the visit record has been located (not blank), record status is active, and the visit has already started, i.e. the actual start value is not blank.
 
-3. Seleccione el botón Salida y haga clic en la propiedad **Modo de presentación** del botón en la pestaña Propiedades.
+3. Select the Check Out button and click on the **Display Mode** property of the button in the Properties tab
 
-4. Escriba la siguiente expresión en la barra de funciones:
+4. Enter the expression below in the function bar:
 
      ```
      If(!IsBlank(Visit) 
@@ -239,98 +239,98 @@ Nos gustaría habilitar el botón **Salida** para cuando el registro de visita s
      )
      ```
 
-5. Para conservar el trabajo en curso, haga clic en **Archivo** y luego en **Guardar**. Utilice la flecha Atrás para volver a la aplicación.
+5. To preserve work in progress, click **File** then click **Save**. Use the back arrow to return to the app.
 
-6. Pulse **F5** para ejecutar la aplicación. 
+6. Press **F5** to run the app. 
 
-7. Ambos botones deben estar deshabilitados. Especifique el valor del código que copió anteriormente y pulse **Pestaña** para alejar el foco del cuadro de texto (o haga clic fuera del cuadro de texto). El botón **Entrada** debería estar habilitado. 
+7. Both buttons should be disabled. Enter the code value you copied previously and press **Tab** to move the focus away from the textbox (or click outside of the textbox). The **Check In** button should become enabled. 
 
-8. Borre el contenido del cuadro de búsqueda.
+8. Clear the search box contents.
 
-9. Pulse **ESC** para salir de la aplicación en ejecución.
+9. Press **ESC** to exit the running app.
 
-## Tarea 5: Completar el proceso de entrada y salida
+## Task \#5: Complete Check In and Check Out Process
 
-Para hacer el proceso de entrada y salida, debemos actualizar los datos de visita de Dataverse de la siguiente manera:
+To perform the check in and check out process we need to update Dataverse visit data as following:
 
-* Cuando el visitante se registre, establezca el campo *Inicio real* a la fecha y hora actuales.
-* Cuando el visitante salga, configure el campo *Fin real* a la fecha y hora actuales. 
-* Después de la salida, configure el estado del registro como inactivo para indicar que la visita se ha completado.
+* When visitor checks in, set *Actual Start* field to the current date and time
+* When visitor checks out, set *Actual End* field to the current date and time. 
+* After check out, set the record status to inactive, indicating that the visit has been completed
 
-1. Seleccione el botón **Entrada**.
+1. Select **Check In** button.
 
-2. Establezca la propiedad **OnSelect** de la pestaña Avanzado a la siguiente expresión.
+2. Set **OnSelect** property on the Advanced tab to the following expression.
 
    ```
    Patch(
        Visits,
-       Visitar,
-       {'Inicio real': Now()}
+       Visit,
+       {'Actual Start': Now()}
    );
-   Actualizar([@Visitas]);
-   Establezca (Visita, Búsqueda (Visitas, Código = textCode.Text));
+   Refresh([@Visits]);
+   Set(Visit, LookUp(Visits, Code = textCode.Text));
    ```
 
-   Esta expresión contiene las siguientes partes:
+   This expression contains the following parts:
 
-   * **Patch(Visitas, Visita, {'Inicio real': Now()});**. El método *Patch* actualiza la tabla **Visitas**, la fila identificada por la variable **Visita** (que es la visita actual). La expresión establece el valor de la columna *Inicio real* a la fecha y hora actuales (*Now()* method).
-   * **Refresh([@Visits]);**. Esta expresión actualiza las filas de visitas a medida que cambian los valores subyacentes
-   * **Set(Visit, LookUp(Visits, Code = textCode.Text));**. Esta expresión actualiza la variable *Visita* con datos nuevos de Dataverse.
+   * **Patch(Visits, Visit, {'Actual Start': Now()});**. *Patch* method updates **Visits** table, the row identified by **Visit** variable (which is the current visit). The expression sets the value of *Actual Start* column to the current date and time (*Now()* method).
+   * **Refresh([@Visits]);**. This expression refreshes the visit rows, as the underlying values have changed
+   * **Set(Visit, LookUp(Visits, Code = textCode.Text));** This expression updates the *Visit* variable with fresh data from Dataverse.
    
-   > Cuando un usuario haga clic en este botón, el inicio real de la visita se establecerá en la fecha y hora actuales, y los datos se actualizarán.
+   > When a user clicks this button, the Actual Start of the Visit will be set to the current date and time and the data will refresh.
 
-3. Seleccione el botón **Salida**.
+3. Select **Check Out** button.
 
-4. Establezca la propiedad **OnSelect** de la pestaña Avanzado a la siguiente expresión:
+4. Set **OnSelect** property on the Advanced tab to the following expression:
 
    ```
    Patch(
-       [@Visitas],
-       Visitar,
+       [@Visits],
+       Visit,
        {
-           'Fin real': Ahora(),
-           Estado: 'Estado (visitas)'.Inactivo
+           'Actual End': Now(),
+           Status: 'Status (Visits)'.Inactive
        }
    );
-   Actualizar([@Visitas]);
-   Establezca (Visita, Búsqueda (Visitas, Código = textCode.Text));
+   Refresh([@Visits]);
+   Set(Visit, LookUp(Visits, Code = textCode.Text));
    ```
 
-   Cuando un usuario haga clic en este botón, el fin real se establecerá en la fecha y hora actuales, el estado del registro de visita se establecerá como inactivo y los datos se actualizarán.
+   When a user clicks this button, the Actual End will be set to the current date and time, the Status of the Visit will be set to Inactive, and the data will refresh.
 
-5. Para conservar el trabajo en curso, haga clic en **Archivo** y luego en **Guardar**. Utilice la flecha **Atrás** para volver a la aplicación.
+5. To preserve work in progress, click **File** then click **Save**. Use the **Back** arrow to return to the app.
 
-6. Presione **F5** o haga clic en el botón Reproducir para ejecutar la aplicación. Especifique el valor del código que copió anteriormente y pulse **Pestaña** para alejar el foco del cuadro de texto. El botón **Entrada** debería estar habilitado.
+6. Press **F5** or click the Play button to run the app. Enter the code value you copied previously and press **Tab** to move the focus away from the textbox. The **Check In** button should become enabled.
 
-7. Pulse el botón **Entrada**. Debería ocurrir lo siguiente:
+7. Press **Check In** button. The following should happen:
 
-   * El **Inicio real** se establece en la fecha y hora actuales
+   * **Actual Start** is set to the current date and time
    
-   * El botón **Entrada** está deshabilitado
+   * **Check In** button is disabled
    
-   * El botón **Salida** está habilitado
+   * **Check Out** button is enabled
 
-8. Pulse el botón **Salida**.
+8. Press **Check Out** button.
 
-   * El **Fin real** se establece en la fecha y hora actuales
+   * **Actual End** is set to the current date and time
    
-   * Ambos botones están deshabilitados
+   * Both buttons are disabled
 
-9. Borre el contenido del cuadro de búsqueda.
+9. Clear the search box contents.
 
-10. Pulse **ESC** para salir de la aplicación en ejecución.
+10. Press **ESC** to exit the running app.
 
-## Tarea 6: Agregar indicadores visuales
+## Task \#6: Add visual indicators
 
-La facilidad de uso de una aplicación móvil mejora significativamente cuando se agregan indicadores visuales. En esta tarea agregaremos un icono que indique si un visitante puede registrarse o no.
+Usability of a mobile app significantly improves when visual indicators are provided. In this task, we will add an icon indicating if a visitor can be checked in or checked out.
 
-1. Seleccione la pestaña **Insertar**.
+1. Select **Insert** tab
 
-2. Seleccione **Iconos \| Agregar**. Seleccione un icono. En este punto, no importa qué icono seleccionemos, ya que queremos que el valor sea dinámico.
+2. Select **Icons \| Add**. Select an Icon. At this point it does not matter which icon we select as we want the value to be dynamic.
 
-3. Cambie el tamaño del icono y colóquelo a la izquierda de los botones.
+3. Resize and place the icon to the left of the buttons
 
-4. En la pestaña Avanzado del icono, seleccione la propiedad **Icono** (en la sección Diseño) y escriba la siguiente expresión:
+4. In the Advanced tab for the Icon, select **Icon** property (in the Design section) and enter the following expression
 
    ```
    If(
@@ -341,32 +341,32 @@ La facilidad de uso de una aplicación móvil mejora significativamente cuando s
    )
    ```
 
-5. Para conservar el trabajo en curso, haga clic en **Archivo** y luego en **Guardar**. Utilice la flecha **Atrás** para volver a la aplicación.
+5. To preserve work in progress, click **File** then click **Save**. Use the **Back** arrow to return to the app.
 
-6. Pulse **F5** para ejecutar la aplicación. Especifique el valor del código que copió anteriormente y pulse **Pestaña** para alejar el foco del cuadro de texto. Compruebe que el icono muestra un emoji con el ceño fruncido.
+6. Press **F5** to run the app. Enter the code value you copied previously and press **Tab** to move the focus away from the textbox. Verify the icon displays a frown emoji.
 
-7. Busque un valor de código diferente que no se haya utilizado antes (no debe tener un valor de Inicio real o Fin real). 
+7. Find a different code value that has not been used before (it should not have an Actual Start or Actual End value). 
 
-    > Puede ir a la pestaña anterior para copiar otro Código de una de las Visitas que creó. También puede ejecutar la aplicación **Personal del campus**, creada previamente, para crear nuevos registros de visitas. Compruebe que el icono muestra un emoji sonriente para este código.
+    > You can navigate to the previous tab to copy another Code from one of the Visits you have created. You also have the option to run your **Campus Staff** app created previously to create new visit records. Verify the icon displays a smile emoji for this code.
 
-La aplicación en ejecución debería verse aproximadamente de esta manera:
+Your running app should look approximately like the following:
 
-![Aplicación de seguridad de ejecución de lienzo](media/3-canvas-app-running.png)
+![Canvas running security app](media/3-canvas-app-running.png)
 
-8. Pulse **ESC** para salir de la aplicación en ejecución.
+8. Press **ESC** to exit the running app.
 
-## Tarea 7: Publicar la aplicación
+## Task #7: Publish the app
 
-1. Debe tener la aplicación Seguridad del campus todavía abierta en su explorador. De no ser así, seleccione la aplicación **Seguridad del campus** y haga clic en **Editar**.
+1. You should still have the Campus Security app open in your browser. If not, select **Campus Security** app and click **Edit**.
 
-2. Seleccione **Archivo \| Publicar** 
+2. Select **File \| Publish** 
 
-3. Seleccione **Publicar esta versión**
+3. Select **Publish this version**
 
-# Retos
+# Challenges
 
-* Evite la entrada manual del código de visita
-* Agregue una validación de creación para la visita
-* Agregue una validación del tiempo real de la visita frente al tiempo programado de la visita (demasiado temprano, demasiado tarde, etc.)
-* Agregue el estado detallado de la visita, por ejemplo, la visualización del correo electrónico y la validación para el visitante, la razón para denegar el acceso al edificio, etc.
-* Múltiples edificios/reuniones/controles durante una sola visita al campus. Por ejemplo, una persona puede visitar el campus por un día y durante ese día se reunirá con miembros del personal en varios edificios a diferentes horas del día. ¿Consideraría agregar la entidad *cita* a la solución?
+* Avoid manual entry of the visit code
+* Add building validation for the visit
+* Add validation of the visit actual time vs visit scheduled time (too early, too late, etc)
+* Add detailed status of the visit, e.g. email display and validation for the visitor, reason for denying building access, etc
+* Multiple buildings/meetings/checkings during a single campus visit. For example, someone may visit campus for a day and during that day they will meet staff members in multiple buildings at different time of the day. Would you consider bringing *appointment* entity into the solution?

@@ -1,103 +1,103 @@
 ---
 lab:
-    title: 'Laboratorio 6: Cómo crear una solución automatizada'
-    module: 'Módulo 4: Comenzar con Power Automate'
+    title: 'Lab 6: How to build an automated solution'
+    module: 'Module 4: Get Started with Power Automate'
 ---
 
-# Módulo 4: Comenzar con Power Automate
-## Laboratorio: Cómo crear una solución automatizada
+# Module 4: Get Started with Power Automate
+## Lab: How to build an automated solution
 
-### Aviso importante (vigente a partir de noviembre de 2020):
-Se ha cambiado el nombre de Common Data Service a Microsoft Dataverse. Parte de la terminología de Microsoft Dataverse se ha actualizado. Por ejemplo, ahora las entidades se llaman tablas. A partir de ahora, los campos y los registros de las bases de datos de Dataverse se denominarán columnas y filas.
+### Important Notice (Effective November 2020):
+Common Data Service has been renamed to Microsoft Dataverse. Some terminology in Microsoft Dataverse has been updated. For example, entity is now table. Fields and records in Dataverse databases are now referred to as columns and rows.
 
-Las aplicaciones están actualizando la experiencia del usuario, pero algunas referencias a la terminología de Microsoft Dataverse, como entidad (de ahora en delante **tabla**), campo (de ahora en adelante **columna**) y registro (de ahora en adelante **fila**) pueden no estar actualizadas. Tenga esto en cuenta cuando trabaje en los laboratorios. Esperamos poder actualizar completamente el contenido pronto. 
+While the applications are in the process of updating their user experience, some references to terminology for Microsoft Dataverse like entity (now **table**), field (now **column**), and record (now **row**) may be out of date. Please keep this in mind as you work through the labs. We expect to have our content fully up to date very soon. 
 
-Si desea obtener más información y consultar la lista completa de los términos afectados, visite [¿Qué es Microsoft Dataverse?](https://docs.microsoft.com/es-es/powerapps/maker/common-data-service/data-platform-intro#terminology-updates).
+For more information and for a complete list of affected terms, please visit [What is Microsoft Dataverse?](https://docs.microsoft.com/en-us/powerapps/maker/common-data-service/data-platform-intro#terminology-updates)
 
-## Escenario
+## Scenario
 
-Bellows College es una institución educativa que tiene un campus con varios edificios. Los visitantes del campus están actualmente registrados en registros en papel. La información no se recaba de manera coherente y no hay forma de recopilar y analizar los datos sobre las visitas de todo el campus. 
+Bellows College is an educational organization with multiple buildings on campus. Campus visitors are currently recorded in paper journals. The information is not captured consistently, and there are no means to collect and analyze data about the visits across the entire campus. 
 
-La administración del campus querría modernizar el sistema de registro de visitantes de los edificios cuyo acceso esté controlado por el personal de seguridad y en los que los anfitriones deban anotar con antelación las visitas y dejar constancia de ellas.
+Campus administration would like to modernize their visitor registration system where access to the buildings is controlled by security personnel and all visits are required to be pre-registered and recorded by their hosts.
 
-A lo largo de este curso, creará aplicaciones e implementará la automatización para permitir que el personal de administración y seguridad de Bellows College administre y controle el acceso a los edificios en el campus. 
+Throughout this course, you will build applications and perform automation to enable the Bellows College administration and security personnel to manage and control access to the buildings on campus. 
 
-En este laboratorio, creará flujos de Power Automate para automatizar varias partes de la administración del campus. 
+In this lab, you will create Power Automate flows to automate various parts of the campus management. 
 
-# Pasos de alto nivel del laboratorio
+# High-level lab steps
 
-Se han identificado las siguientes condiciones como requisitos que debe implementar para completar el proyecto:
+The following have been identified as requirements you must implement to complete the project:
 
-* El código único asignado a cada visitante debe estar disponible antes de su visita.
-* El personal de seguridad necesita recibir notificaciones de los visitantes que se queden durante más tiempo que la franja horaria programada.
+* The unique code assigned to each visitor must be made available to them prior to their visit.
+* Security personnel need to receive notifications of visitors overstaying their scheduled timeslots.
 
-## Requisitos previos
+## Prerequisites
 
-* Haber finalizado el **Módulo 0, Laboratorio 0: Validación del entorno de laboratorio**
-* Haber finalizado el **Módulo 2, Laboratorio 1: Introducción a Microsoft Dataverse**
-* Aplicación Personal del campus creada en el **Módulo 3, Laboratorio 2: Cómo crear una aplicación de lienzo, parte 2** (para pruebas)
-* Contacto de John Doe creado con una dirección de correo electrónico personal en el **Módulo 3, Laboratorio 4: Cómo crear una aplicación basada en modelo** (para pruebas)
+* Completion of **Module 0 Lab 0 - Validate lab environment**
+* Completion of **Module 2 Lab 1 - Introduction to Microsoft Dataverse**
+* Campus Staff app created in **Module 3 Lab 2 – How to build a canvas app, part 2** (for testing)
+* John Doe contact created with a personal email address in **Module 3 Lab 4 - How to build a model-driven app** (for testing)
 
-## Cuestiones que conviene tener en cuenta antes de comenzar
+## Things to consider before you begin
 
--   ¿Cuál es el mecanismo de distribución más apropiado para los códigos de visitante?
--   ¿Cómo se pueden medir las estancias prolongadas y aplicar directivas estrictas?
+-   What is the most appropriate distribution mechanism for the visitor codes?
+-   How could overstays be measured and strict policies enforced?
 
-# Ejercicio 1: Crear un flujo de notificación de visita
+# Exercise \#1: Create Visit Notification flow
 
-**Objetivo:** en este ejercicio, creará un flujo de Power Automate que implemente el requisito. El visitante debe recibir un correo electrónico que incluya el código único asignado a la visita.
+**Objective:** In this exercise, you will create a Power Automate flow that implements the requirement. The visitor should be sent an email that includes the unique code assigned to the visit.
 
-## Tarea 1: Crear el flujo
+## Task \#1: Create flow
 
-1.  Abra la solución de Administración del campus.
+1.  Open your Campus Management solution.
 
-    -   Inicie sesión en <https://make.powerapps.com>.
+    -   Sign in to <https://make.powerapps.com>
 
-    -   Seleccione su **entorno**.
+    -   Select your **environment.**
 
-    -   Seleccione **Soluciones**.
+    -   Select **Solutions**.
 
-    -   Haga clic para abrir la solución de **Administración del campus**.
+    -   Click to open your **Campus Management** solution.
 
-2.  Haga clic en **Nuevo** y seleccione **Flujo de nube**. Se abrirá el editor de flujo de Power Automate en una nueva ventana.
+2.  Click **New** and select **Cloud flow**. This will open the Power Automate flow editor in a new window.
 
-3. Busque *Actual* y seleccione el conector **Common Data Service (entorno actual)**.
+3. Search for *Current* and select **Common Data Service (Current Environment)** connector.
 
-4. Seleccione el desencadenador **Cuando se crea, actualiza o elimina un registro**.
+4. Select the trigger **When a Record is Created, Updated or Deleted**.
 
-   * Seleccione **Crear** para **Desencadenar la condición**.
+   * Select **Create** for **Trigger condition**
    
-   * Seleccione **Visitas** para el **Nombre de la tabla**.
+   * Select **Visits** for **Table name**
    
-   * Seleccione **Organización** para el **Ámbito**.
+   * Select **Organization** for **Scope**
    
-   * Durante el paso de desencadenamiento, haga clic en los puntos suspensivos (**...**) y en **Cambiar nombre**. Cambie el nombre de este desencadenador a **“Cuando se crea una visita”**. Esta es una buena manera de que usted y otros editores de flujo puedan comprender el propósito del paso sin tener que profundizar en los detalles.
+   * On the trigger step, click the ellipsis (**...**) and click **Rename**. Rename this trigger **"When a visit is created"**. This is a good practice, so you and other flow editors can understand the purpose of the step without having to dive into the details.
 
-5.  Haga clic en **Nuevo paso**. Este paso es necesario para recuperar la información de los visitantes, incluida la dirección de correo electrónico.
+5.  Click **New Step**. This step is required to retrieve visitors information, including email address.
 
-6. Busque *Actual* y seleccione el conector **Common Data Service (entorno actual)**.
+6. Search for *Current* and select **Common Data Service (Current Environment)** connector.
 
-7. Seleccione la acción **Obtener una fila por id.**. 
+7. Select **Get a row by ID** action. 
 
-   * Seleccione **Contactos** como **Nombre de la tabla**.
+   * Select **Contacts** as **Table name**
    
-   * En el campo **Id. de fila**, seleccione **Visitante (valor)** de la Lista de contenido dinámico.
+   * In the **Row ID** field, select **Visitor (Value)** from the Dynamic content list.
    
-   * En esta acción, haga clic en los puntos suspensivos (**...**) y en **Cambiar nombre**. Cambie el nombre de esta acción a **“Obtener visitante”**. Esta es una buena manera de que usted y otros editores de flujo puedan comprender el propósito del paso sin tener que profundizar en los detalles.
+   * On this action, click the ellipsis (**...**) and click **Rename**. Rename this action **"Get the Visitor"**. This is a good practice, so you and other flow editors can understand the purpose of the step without having to dive into the details.
 
-8. Haga clic en **Nuevo paso**. Este es el paso que creará y enviará un correo electrónico al visitante.
+8. Click **New Step**. This is the step that will create and send email to the visitor.
 
-9. Busque el *correo electrónico*, seleccione el conector **Correo electrónico** y la acción **Enviar una notificación por correo electrónico**. 
+9. Search for *mail*, select **Mail** connector and **Send an email notification** action 
 
-   * Si se le pide que acepte los términos y condiciones para usar esta acción, haga clic en **Aceptar**.
+   * If asked to Accept terms and conditions for using this action, click **Accept**.
    
-   * Seleccione los campos **Para** y **Correo electrónico** en la Lista de contenido dinámico. Observe que se encuentra debajo del encabezado **Obtener visitante**. Esto significa que está seleccionando el correo electrónico relacionado con el visitante que buscó en el paso anterior. 
+   * Select **To** field, select **Email** from the Dynamic content list. Notice that it is beneath the **Get the Visitor** header. This means you are selecting the Email that is related to the Visitor that you looked up in the previous step. 
 
-   * Escriba **Su visita programada a Bellows College** en el campo **Asunto**.
+   * Enter **Your scheduled visit to Bellows College** in the **Subject** field.
 
-   * Escriba el siguiente texto en el **Cuerpo del correo electrónico**:  
+   * Enter the following text in **Email Body**:  
         
-        > El contenido dinámico debe colocarse donde se nombran los campos entre paréntesis. Se recomienda copiar y pegar todo el texto primero y, luego, agregar el contenido dinámico en los lugares correctos.
+        > Dynamic content needs to be placed where fields are named in brackets. It is recommended to copy & paste all text first and then add dynamic content in the correct places.
    
         ```
         Dear {First Name},
@@ -112,133 +112,133 @@ Se han identificado las siguientes condiciones como requisitos que debe implemen
         Bellows College
         ```
    
-10.  Seleccione el nombre del flujo **Sin título** en la parte superior y cambie el nombre a `Notificación de visita`.
+10.  Select the **Untitled** flow name at the top and rename it to `Visit notification`
 
-11. Pulse **Guardar**.
+11. Press **Save**
 
-    Deje esta pestaña de flujo abierta para la siguiente tarea. El flujo debería tener la siguiente apariencia:
+    Leave this flow tab open for the next task. You flow should look approximately like the following:
 
-![Flujo de notificación de visitante de Power Automate](media/4-power-automate-notification.png)
+![Power Automate visitor notification flow](media/4-power-automate-notification.png)
 
-## Tarea 2: Validar y probar el flujo
+## Task \#2: Validate and test the flow
 
-1.  Abra una nueva pestaña en su explorador y vaya a <https://make.powerapps.com>.
+1.  Open a new tab in your browser and navigate to <https://make.powerapps.com>
 
-2.  Haga clic en **Aplicaciones** y seleccione la aplicación **Personal del campus** que creó.
+2.  Click **Apps** and select the **Campus Staff** app you created
 
-3.  Deje esta pestaña abierta y vuelva a la pestaña anterior con el flujo. 
+3.  Leaving this tab open, navigate back to the previous tab with your flow. 
 
-4.  En la barra de comandos, haga clic en **Probar**. Seleccione **Manualmente** y luego **Guardar y probar**.
+4.  On the command bar, click **Test**. Select **Manually** and then **Save & Test**.
 
-5.  Deje abierta la pestaña de flujo y vuelva a la pestaña anterior con la aplicación **Personal del campus**.
+5.  Leaving the flow tab open, navigate back to the previous tab with the **Campus Staff** app.
 
-6.  Presione **+** para agregar un nuevo registro de visita.
+6.  Press **+** to add a new Visit record
 
-7.  Escriba **John Doe** como **Nombre** y elija cualquier **Edificio**.
+7.  Enter **John Doe** as **Name** and choose any **Building**
 
-8.  Seleccione a **John Doe** como el **Visitante**.
+8.  Choose **John Doe** as the **Visitor**
 
-9.  Seleccione el **Inicio programado** y las **Fechas de finalización programadas** para cualquier fecha futura.
+9.  Choose the **Scheduled Start** and **Scheduled End Dates** to any dates in the future.
 
-10.  Pulse el icono de **Marca de verificación** para guardar la nueva visita.
+10.  Press the **Checkmark** icon to save the new visit
 
-11.  Vuelva a la pestaña anterior con el flujo que se está probando. Observe cómo se ejecuta el flujo. Si hay algún error, vuelva y compare el flujo con el ejemplo anterior. Si el correo electrónico se envía correctamente, lo recibirá en la bandeja de entrada. 
+11.  Navigate back to the previous tab with the flow being tested. Watch as the flow is run. If there are any errors, go back and compare your flow to the example above. If the email is sent successfully, you will receive it in your inbox. 
 
-12.  Haga clic en la flecha que indica hacia atrás en la barra de comandos.
+12.  Click the back arrow on the command bar
 
-13.  En la sección **Detalles**, compruebe que el **Estado** está **Activado**. Esto significa que el flujo se ejecutará siempre que se cree una nueva Visita, hasta que lo desactive. Cada vez que se ejecute el flujo, verá que se agrega a la lista **Historial de ejecución de 28 días**.
+13.  In the **Details** section, notice that the **Status** is set to **On**. This means your flow will run whenever a new Visit is created, until you turn it off. Any time the flow runs, you will see it added to the **28-day run history** list.
 
-14.  Para desactivar el flujo, haga clic en **Apagar** en la barra de comandos. Es posible que deba pulsar los puntos suspensivos (**...**) para poder ver esta opción.
+14.  Turn the flow off by clicking **Turn off** on the command bar. You may need to press the ellipses (**...**) to see this option.
 
-15.  Cierre esta ventana.
+15.  Close this window.
 
-# Ejercicio 2: Crear un flujo de barrido de seguridad
+# Exercise #2: Create Security Sweep flow
 
-**Objetivo:** en este ejercicio, creará un flujo de Power Automate que implemente el requisito. El barrido de seguridad se realiza cada 15 minutos y se notifica a seguridad si alguno de los visitantes ha sobrepasado la hora programada.
+**Objective:** In this exercise, you will create a Power Automate flow that implements the requirement. A security sweep needs to be performed every 15 minutes, and security should be notified if any of the visitors overstayed their scheduled time.
 
-## Tarea 1: Crear un flujo para recuperar registros
+## Task #1: Create flow to retrieve records
 
-1. Abra la solución de Administración del campus.
+1. Open your Campus Management solution.
 
-   -   Inicie sesión en <https://make.powerapps.com>.
+   -   Sign in to <https://make.powerapps.com>
 
-   -   Seleccione su **Entorno**.
+   -   Select your **Environment.**
 
-   -   Seleccione **Soluciones**.
+   -   Select **Solutions**.
 
-   -   Haga clic para abrir la solución de **Administración del campus**.
+   -   Click to open your **Campus Management** solution.
 
-2. Haga clic en **Nuevo** y seleccione **Flujo de nube**. Se abrirá el editor de flujo de Power Automate en una nueva ventana.
+2. Click **New** and select **Cloud flow**. This will open the Power Automate flow editor in a new window.
 
-3. Busque *Periodicidad*, seleccione el conector **Programación** y luego, seleccione el desencadenador **Periodicidad**.
+3. Search for *recurrence*, select **Schedule** connector, and then select the **Recurrence** trigger.
 
-4. Establezca **Intervalo** en **15 minutos**.
+4. Set **Interval** to **15 minutes**
 
-5. Haga clic en **Nuevo paso**. Busque *Actual* y seleccione el conector **Common Data Service (entorno actual)**. Seleccione la acción **Filas de lista**.
+5. Click **New step**. Search for *Current* and select **Common Data Service (Current Environment)** connector. Select **List rows** action.
 
-   * Especifique **Visitas** para el **Nombre de la tabla**.
+   * Enter **Visits** as **Table name**
    
-   * Haga clic en **Mostrar opciones avanzadas**.
+   * Click **Show advanced options**
 
-   * Escriba la siguiente expresión como **Filtrar filas**:
+   * Enter the following expression as **Filter rows**
 
    ```
      statecode eq 0 and bc_actualstart ne null and bc_actualend eq null and Microsoft.Dynamics.CRM.OlderThanXMinutes(PropertyName='bc_scheduledend',PropertyValue=15)
    ```
    
-   * Vamos a desglosarlo:
-       * **statecode eq 0** filtra las visitas activas (aquellas cuyo Estado es igual a Activo).
-       * **bc_actualstart ne null** restringe la búsqueda a las visitas en las que Inicio real tenga un valor (es decir, se produjo un registro).
-       * **bc_actualend eq null** restringe la búsqueda a las visitas en las que no hubo salida (Fin real no tiene valor). 
-       * **Microsoft.Dynamics.CRM.OlderThanXMinutes(PropertyName='bc_scheduledend',PropertyValue=15)** restringe las visitas que debieron completarse hace más de 15 minutos.
+   * To break it down:
+       * **statecode eq 0** filters active visits (where Status equal Active)
+       * **bc_actualstart ne null** restricts search to visits where Actual Start has a value, i.e. there was a checkin
+       * **bc_actualend eq null** restricts search to visits where there was no check out (Actual End has no value) 
+       * **Microsoft.Dynamics.CRM.OlderThanXMinutes(PropertyName='bc_scheduledend',PropertyValue=15)** restricts visits where visits meant to complete more than 15 minutes ago.
 
-   * En esta acción, haga clic en los puntos suspensivos (**...**) y en **Cambiar nombre**. Cambie el nombre de esta acción a **“Enumerar las visitas activas que finalizaron hace más de 15 minutos”**. Esta es una buena manera de que usted y otros editores de flujo puedan comprender el propósito del paso sin tener que profundizar en los detalles.
+   * On this action, click the ellipsis (**...**) and click **Rename**. Rename this action **"List active visits that ended more than 15 minutes ago"**. This is a good practice, so you and other flow editors can understand the purpose of the step without having to dive into the details.
 
-6.  Haga clic en **Nuevo paso**. Busque *Aplicar*, Seleccione la acción **Aplicar a cada una**. 
+6.  Click **New step**. Search for *Apply*, select **Apply to each** action 
 
-7.  Seleccione **valor** en el contenido dinámico del campo **Seleccionar una salida de los pasos anteriores**. Observe que está debajo del encabezado gris **Enumerar las visitas activas que finalizaron hace más de 15 minutos**. Esto significa que está seleccionando la lista de visitas que buscó en el paso anterior. 
+7.  Select **value** from dynamics content in the **Select an output from previous steps** field. Notice that it is beneath the **List active visits that ended more than 15 minutes ago** gray header. This means you are selecting the list of visits that you looked up in the previous step. 
 
-8.  Recupere datos de Edificios para registros relacionados.
+8.  Retrieve Building data for related record
 
-    * Haga clic en **Agregar una acción** dentro de Aplicar para cada bucle.
+    * Click **Add an action** inside the Apply to Each loop.
     
-    * Busque *Actual* y seleccione el conector **Common Data Service (entorno actual)**. 
+    * Search for *Current* and select **Common Data Service (Current Environment)** connector. 
     
-    * Seleccione la acción **Obtener una fila por id.**.
+    * Select **Get a row by ID** action.
     
-    * Seleccione **Edificios** como **Nombre de la entidad**.
+    * Select **Buildings** as **Entity name**
     
-    * Seleccione **Edificio (valor)** como **Id. de elemento** del contenido dinámico.
+    * Select **Building (Value)** as **Item ID** from the Dynamic content
     
-    * Haga clic en **...** junto a **Obtener un registro** y seleccione **Cambiar nombre**. Escriba **Obtener edificio** como nombre del paso.
+    * Click **...** beside **Get a record**, select **Rename**. Enter **Get building** as step name
     
-9.  Recupere datos de visitantes para registros relacionados.
+9.  Retrieve Visitor data for related record
 
-    * Haga clic en **Agregar una acción** dentro de Aplicar para cada bucle.
+    * Click **Add an action** inside the Apply to Each loop.
     
-    * Busque *Actual* y seleccione el conector **Common Data Service (entorno actual)**.
+    * Search for *Current* and select **Common Data Service (Current Environment)** connector.
     
-    * Seleccione la acción **Obtener una fila por id.**.
+    * Select **Get a row by ID** action.
     
-    * Seleccione **Contactos** como **Nombre de la entidad**.
+    * Select **Contacts** as **Entity name**
     
-    * Seleccione **Visitante (valor)** como **Id. de elemento** en el contenido dinámico.
+    * Select **Visitor (Value)** as **Item ID** from the Dynamic content
     
-    * Haga clic en **...** junto a **Obtener un registro** y seleccione **Cambiar nombre**. Escriba **Obtener visitante** como nombre del paso.
+    * Click **...** beside **Get a record**, select **Rename**. Enter **Get visitor** as step name
     
-11.  Envíe una notificación por correo electrónico
+11.  Send email notification
 
-     * Haga clic en **Agregar una acción** dentro de Aplicar para cada bucle. Añada la acción **Enviar una notificación por correo electrónico** desde la conexión **Correo electrónico**.
+     * Click **Add an action** inside the Apply to Each loop. Add **Send an email notification** action from **Mail** connection.
 
-12.  Escriba su dirección de correo electrónico como **Para**.
+12.  Enter your email address as **To**
 
-13.  Escriba lo siguiente en el campo **Asunto**. **Nombre completo** es un contenido dinámico del paso **Obtener visitante**.
+13.  Enter the following in the **Subject** field. **Full Name** is a dynamic content from the **Get visitor** step.
 
    ```
    {Full Name} overstayed their welcome
    ```
    
-14.  Escriba lo siguiente en el campo **Cuerpo**. **Nombre** es un contenido dinámico del paso **Obtener edificio**.
+14.  Enter the following in the **Body** field. **Name** is a dynamic content from **Get building** step.
 
    ```
    There is an overstay in building {Name}.
@@ -248,45 +248,45 @@ Se han identificado las siguientes condiciones como requisitos que debe implemen
    Campus Security
    ```
 
-17.  Seleccione el nombre de flujo **Sin título** en la esquina superior izquierda y cambie el nombre a **Barrido de seguridad**.
+17.  Select flow name **Untitled** in the upper left corner and rename it to **Security Sweep**
 
-18.  Pulse **Guardar**.
+18.  Press **Save**
 
-El flujo debería ser parecido a lo siguiente:
+    Your flow should look approximately like the following:
 
-![Parte 1 del flujo programado del barrido de seguridad](media/4-power-automate-security-sweep-flow.png)
+![Security sweep scheduled flow part 1](media/4-power-automate-security-sweep-flow.png)
 
-## Tarea 2: Validar y probar el flujo
+## Task #2: Validate and test the flow
 
-Su flujo comenzará a enviarle correos electrónicos (al correo electrónico que especificó al crear anteriormente el contacto de John Doe) si hay visitas que cumplen con los requisitos establecidos en el flujo.
+Your flow will begin sending you emails (to the email you specified when creating the John Doe contact previously) if there are visits that meet the requirements laid out in the flow.
 
-1. Compruebe que los registros de visitas tienen lo siguiente:
+1. Validate that you have visit records that:
 
-   1. Estado activo
+   1. Have active status
    
-   2. Un fin programado pasado (más de 15 minutos)
+   2. Scheduled End is in the past (by more than 15 minutes)
    
-   3. Un Inicio real con un valor
+   3. Actual Start has a value.
    
-   > **Nota**: Para ver estos datos, vaya hasta make.powerapps.com en una nueva pestaña. Haga clic en Soluciones en el panel izquierdo para localizar la solución. Seleccione la entidad Visita y luego seleccione la pestaña Datos. Haga clic en Visitas activas en la esquina superior derecha para mostrar el selector de vista y, después, seleccione Todos los campos.
+   > **Note**: To view this data, navigate to make.powerapps.com in a new tab. Click Solutions on the left pane to locate your solution. Select the Visit entity, then select the Data tab. Click Active Visits in the top right-hand corner to display the view selector, then select All fields.
    
-2. Vaya al flujo **Barrido de seguridad** si aún no está ahí.
+2. Navigate to your **Security Sweep** flow, if not already there.
 
-3. Cuando se abra el flujo, haga clic en **Probar**.
+3. When your flow opens, click **Test**.
 
-4. Seleccione **Manualmente**.
+4. Select **Manually**.
 
-5. Haga clic en **Guardar y probar** y **Ejecutar flujo**.
+5. Click **Save & Test** and **Run Flow**.
 
-6. Cuando el flujo se complete, haga clic en **Listo**. 
+6. When flow competes, click **Done**. 
 
-7. Expanda **Aplicar a cada uno** y luego expanda el paso **Enviar una notificación por correo electrónico**. Compruebe los valores **Tema** y **Cuerpo del correo electrónico**.
+7. Expand **Apply to each**, then expand the **Send an email notification** step. Check the **Subject**, **Email Body** values.
 
-8. Seleccione la flecha que indica hacia atrás para volver a los detalles del flujo Barrido de seguridad. Seleccione **Desactivar** en la barra de comandos. Esto sirve para evitar que el flujo se ejecute según una programación en el sistema de prueba.
+8. Select the back arrow to the Security Sweep flow details. Select **Turn off** on the command bar. This is to prevent flow from executing on a schedule on the test system.
 
-# Retos
+# Challenges
 
-* Agregue el Inicio real y el Fin programado al cuerpo del correo electrónico.
-* ¿Cómo podría garantizar un formato de fecha fácil de usar en el cuerpo del correo electrónico?
-* ¿Es posible generar una tabla con información sobre el exceso del tiempo de permanencia y enviar solo un correo electrónico?
-* ¿Se puede generar un código de barras para el código de visita? ¿Cuándo sería útil?
+* Add Actual Start and Scheduled End to the email body.
+* How could you ensure user-friendly date formatting is used in the email body?
+* Is it possible to generate a table with overstay information and send only a single email?
+* Can you generate barcode for the visit code? When will that be useful?

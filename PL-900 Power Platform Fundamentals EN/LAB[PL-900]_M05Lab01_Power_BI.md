@@ -1,226 +1,226 @@
 ---
 lab:
-    title: 'Laboratorio 7: Cómo crear un tablero simple'
-    module: 'Módulo 5: Comience con Power BI'
+    title: 'Lab 7: How to build a simple dashboard'
+    module: 'Module 5: Get Started with Power BI'
 ---
 
-# Módulo 5: Comience con Power BI
-## Laboratorio: Cómo crear un tablero simple
+# Module 5: Get Started with Power BI
+## Lab: How to build a simple dashboard
 
-# Escenario
+# Scenario
 
-Bellows College es una institución educativa que tiene un campus con varios edificios. Los visitantes del campus están actualmente registrados en registros en papel. La información no se recaba de manera coherente y no hay forma de recopilar y analizar los datos sobre las visitas de todo el campus. 
+Bellows College is an educational organization with multiple buildings on campus. Campus visitors are currently recorded in paper journals. The information is not captured consistently, and there are no means to collect and analyze data about the visits across the entire campus. 
 
-La administración del campus querría modernizar el sistema de registro de visitantes de los edificios cuyo acceso esté controlado por el personal de seguridad y en los que los anfitriones deban anotar con antelación las visitas y dejar constancia de ellas.
+Campus administration would like to modernize their visitor registration system where access to the buildings is controlled by security personnel and all visits are required to be pre-registered and recorded by their hosts.
 
-A lo largo de este curso, creará aplicaciones e implementará la automatización para permitir que el personal de administración y seguridad de Bellows College administre y controle el acceso a los edificios en el campus. 
+Throughout this course, you will build applications and perform automation to enable the Bellows College administration and security personnel to manage and control access to the buildings on campus. 
 
-En este laboratorio, creará un panel de Power BI que visualice datos sobre las visitas al campus.
+In this lab, you will build a Power BI dashboard that visualizes data about campus visits.
 
-# Pasos de alto nivel del laboratorio
+# High-level lab steps
 
-Seguiremos los pasos que se señalan a continuación para diseñar para crear el panel de información de Power BI:
+We will follow the below steps to design and create the Power BI dashboard:
 
--   Conectarse a Dataverse
--   Transformar los datos para incluir descripciones fáciles de usar para las filas relacionadas (búsquedas)
--   Crear y publicar un informe con varias visualizaciones de la información de las visitas al campus
--   Usar un lenguaje de consulta del usuario natural para crear visualizaciones adicionales
--   Crear una vista móvil del panel de información de Power BI
+-   Connect to Dataverse
+-   Transform the data to include user-friendly descriptions for the related rows (lookups)
+-   Create and publish a report with various visualizations of the campus visits information
+-   Utilize a user natural language query to build additional visualizations
+-   Build a mobile view of the Power BI dashboard
 
 
-## Requisitos previos
+## Prerequisites
 
-* Haber finalizado el **Módulo 0, Laboratorio 0: Validación del entorno de laboratorio**
-* Haber finalizado el **Módulo 2, Laboratorio 1: Introducción a Microsoft Dataverse**
+* Completion of **Module 0 Lab 0 - Validate lab environment**
+* Completion of **Module 2 Lab 1 - Introduction to Microsoft Dataverse**
 
-## Cuestiones que conviene tener en cuenta antes de comenzar
+## Things to consider before you begin
 
--   ¿Quién es el público objetivo del informe?
--   ¿Cómo consumirá el informe el público? ¿Dispositivo típico? ¿Ubicación?
--   ¿Tiene suficientes datos para visualizar?
--   ¿Cuáles son las posibles características que puede usar para analizar datos sobre las visitas?
+-   Who is the target audience of the report?
+-   How will the audience consume the report? Typical device? Location?
+-   Do you have sufficient data to visualize?
+-   What are the possible characteristics you can use to analyze data about the visits?
 
-# Ejercicio 1: Crear informes de Power BI 
+# Exercise \#1: Create Power BI Report 
 
-**Objetivo:** en este ejercicio creará un informe de Power BI basado en datos de la base de datos de Dataverse.
+**Objective:** In this exercise, you will create a Power BI report based on data from your Dataverse database.
 
-## Tarea 1: Instalar Power BI Desktop/Preparar el servicio Power BI
+## Task \#1: Install Power BI Desktop / Prepare Power BI service
 
-1. Siga las siguientes instrucciones para configurar Power BI: 
+1. Follow the below instructions to setup Power BI: 
 
-    - Si Power BI Desktop **ya** está instalado, pase a la [Tarea 2](#task-2-prepare-data)
+    - If Power BI Desktop is **already** installed, please skip to [Task \#2](#task-2-prepare-data).
     
-    - Si no tiene Power BI Desktop instalado, complete el **Paso 2**
+    - If you do not have Power BI Desktop installed, complete **Step #2**.
     
-    - Si no tiene los permisos necesarios o tiene problemas con la ejecución de Power BI Desktop, continúe con el **Paso 4**
+    - If you do not have required permissions or encounter issues with running Power BI Desktop, continue to **Step #4**.
 
-2. Visite [https://aka.ms/pbidesktopstore](https://aka.ms/pbidesktopstore) para descargar e instalar Power BI Desktop.
+2. Navigate to [https://aka.ms/pbidesktopstore](https://aka.ms/pbidesktopstore) to download and install Power BI Desktop.
 
-    > [IMPORTANTE]
-    > Si tiene problemas para instalar Power BI Desktop con Microsoft Store, pruebe con el instalador independiente que se puede descargar desde [https://aka.ms/pbiSingleInstaller](https://aka.ms/pbiSingleInstaller).
+    > [!IMPORTANT]
+    > If you experience issues installing Power BI Desktop using Microsoft Store, try standalone installer that can be downloaded from [https://aka.ms/pbiSingleInstaller](https://aka.ms/pbiSingleInstaller).
 
-3. Si instaló Power BI Desktop correctamente, ya puede pasar a la [Tarea 2](#task-2-prepare-data). De lo contrario, continúe con el siguiente paso.
+3. If you successfully installed Power BI Desktop, you can now skip to [Task \#2](#task-2-prepare-data); otherwise, continue to the next step.
 
-    > Si no tiene los permisos necesarios para instalar aplicaciones de escritorio o tiene dificultades para ejecutar o configurar Power BI Desktop, complete los pasos de la siguiente tarea.
+    > If you do not have required permissions to install desktop applications or experience difficulties in running or configuring Power BI Desktop, complete the task steps below.
 
-4. Descargue [visits.pbix](../../Allfiles/visits.pbix) y guárdelo en su equipo.
+4. Download [visits.pbix](../../Allfiles/visits.pbix) and save on your computer.
 
-5. Vaya a [https://app.powerbi.com/](https://app.powerbi.com/) y haga clic en **Iniciar sesión**. 
+5. Navigate to [https://app.powerbi.com/](https://app.powerbi.com/) and click **Sign in**. 
 
-6. Haga clic en **Mi área de trabajo**. 
+6. Click **My Workspace**. 
 
-7. Cuando aparezca la página **Obtener datos**, haga clic en **Omitir**. 
+7. If presented with the **Get Data** page, click **Skip**. 
 
-8. Expanda **+Nuevo** y seleccione **Cargar un archivo**.
+8. Expand **+New** and select **Upload a file**.
 
-    > [IMPORTANTE]
-    > Si no ve **+Nuevo**, es posible que deba activar el nuevo aspecto de Power BI. Asegúrese de que **Nuevo aspecto** aparece como **Activado** en la parte superior de la pantalla.
+    > [!IMPORTANT]
+    > If you don't see **+New**, you may need to activate the new look for Power BI. Be sure to toggle the **New look** to **On** at the top of your screen.
 
-9. Seleccione **Archivo local**.
+9. Select **Local File**.
 
-10. Busque y seleccione el archivo **visits.pbix** que ha descargado anteriormente.
+10. Locate and select **visits.pbix** file you've downloaded earlier.
 
-11. Una vez completada la carga de datos, seleccione el informe de **visitas** (observe que el Tipo se establece en **Informe**).
+11. Once data load is complete, select **visits** report (notice that the Type is set to **Report**).
 
-12. Haga clic en **Editar**. Si el elemento del menú **Editar** no es visible, haga clic en **...** y luego seleccione **Editar**.
+12. Click **Edit**. If **Edit** menu item is not visible click **...** and then select **Edit**.
 
-13. Ya ha configurado el servicio Power BI para usarlo en sus laboratorios. Continúe con la [Tarea 3](#task-3-create-chart-and-time-visualizations), pero use el servicio Power BI en línea en [https://app.powerbi.com](https://app.powerbi.com) en lugar de Power BI Desktop durante el resto del laboratorio.
+13. You have now setup Power BI service to use for your labs. Continue to [Task \#3](#task-3-create-chart-and-time-visualizations), but use the online Power BI service at [https://app.powerbi.com](https://app.powerbi.com) instead of Power BI Desktop throughout the lab.
 
-## Tarea 2: Preparar los datos
+## Task \#2: Prepare Data
 
-1.  Descubra la URL de su organización
+1.  Find out your organization URL
 
-    * En una pestaña nueva, vaya al Centro de administración de Power Platform en <https://admin.powerplatform.com>.
+    * In a new tab, navigate to Power Platform Admin Center at <https://admin.powerplatform.com>
     
-    * En la página de navegación izquierda, seleccione Entornos y, después, abra su entorno de práctica.
+    * In the left navigation page, select Environments, and then open your Practice environment.
     
-    * Haga clic con el botón derecho del ratón en la **URL de entorno** del panel **Detalles** y luego seleccione **Copiar dirección del vínculo**.
+    * Right mouse click **Environment URL** on the **Details** panel, then select **Copy link address**.
     
-2. Abra Power BI Desktop e inicie sesión con las credenciales que le han dado si se le pide.
+2. Open Power BI Desktop, sign in with your provided credentials if prompted.
 
-3. Seleccione **Obtener datos**.
+3. Select **Get data**.
 
-4. Seleccione **Power Platform** a la izquierda, luego seleccione **Common Data Service** y pulse **Conectar**.
+4. Select **Power Platform** on the left, then select **Common Data Service**, and press **Connect**.
 
-5. Pegue la URL del entorno que copió anteriormente en el campo **URL del servidor** y pulse **Aceptar**.
+5. Paste the environment URL you copied earlier into the **Server URL** field, press **OK**.
 
-6. Expanda el nodo **Entidades**, seleccione las entidades **bc_Building** y **bc_Visit** y haga clic en **Cargar**.
+6. Expand **Entities** node, select **bc_Building** and **bc_Visit** entities, click **Load**.
 
-7. Haga clic en el icono **Modelo** de la barra de herramientas vertical izquierda.
+7. Click **Model** icon on the left vertical toolbar.
 
-8. Arrastre la columna **bc_buildingid** desde la tabla **bc_Building** y suéltela en la columna **bc_building** de la tabla **bc_Visit**. Esto creará una relación entre las dos tablas que Power BI podrá usar para mostrar datos relacionados.
+8. Drag **bc_buildingid** column from **bc_Building** table and drop it to **bc_building** column in **bc_Visit** table. That will create a relationship between the two tables that Power BI will be able to use to display related data.
 
-9. Seleccione el icono **Informe** en la barra de herramientas izquierda.
+9. Select **Report** icon on the left toolbar.
 
-10. Expanda el nodo **bc_Visit** en el panel **Campos**.
+10. Expand **bc_Visit** node in the **Fields** panel.
 
-11. Haga clic en **...** junto a **bc_Visit** y seleccione **Nueva columna**.
+11. Click **...** beside **bc_Visit** and select **New Column**.
 
-12. Complete la fórmula del siguiente modo:
+12. Complete the formula as following:
 
     ```
     Column = RELATED(bc_Building[bc_name])
     ```
 
-    y pulse ENTRAR. Esto agregará un nuevo campo con el nombre del edificio en los datos de las visitas.
+    and press ENTER. That will add a new field with the building name into the visits data.
 
-13. Haga clic en **...** junto al campo **Columna** que acaba de crear y seleccione **Cambiar nombre**. Escriba **Edificio** como nombre del campo.
+13. Click **...** next to the **Column** field that you just created and select **Rename**. Enter **Building** as the field name.
 
-14. Haga clic en **...** al lado del campo **bc_visitid** y seleccione **Cambiar nombre**. Escriba **Visita** como nombre del campo.
+14. Click **...** next to the **bc_visitid** field and select **Rename**. Enter **Visit** as the field name.
 
-15. Haga clic en **...** al lado del campo **bc_scheduledstart** y seleccione **Cambiar nombre**. Escriba **Inicio** como nombre del campo.
+15. Click **...** next to the **bc_scheduledstart** field and select **Rename**. Enter **Start** as the field name.
 
-16. Para guardar el trabajo en curso, pulse **Archivo \| Guardar** y escriba el nombre de archivo que quiera.
+16. Save work in progress by pressing **File \| Save** and entering a filename of your choice.
 
-## Tarea 3: Crear gráficos y visualizaciones de tiempo
+## Task #3: Create Chart and Time Visualizations
 
-1. Pulse el icono de gráfico circular del panel **Visualizaciones** para insertar un gráfico.
+1. Press the pie chart icon in the **Visualizations** panel to insert a chart.
 
-2. Arrastre el campo **Edificio** y colóquelo en el cuadro **Leyenda**.
+2. Drag the **Building** field and drop it into **Legend** box.
 
-3. Arrastre el campo **Visita** y colóquelo en el cuadro de destino **Valores**.
+3. Drag the **Visit** field and drop it into **Values** target box.
 
-4. Para cambiar el tamaño del gráfico circular, utilice los controladores de las esquinas y todos los componentes del gráfico serán visibles.
+4. Resize the pie chart using corner handles so that all chart components are visible.
 
-5. Haga clic en el informe que está fuera del gráfico circular para anular la selección y seleccione el gráfico de columnas apiladas en el panel **Visualizaciones**. 
+5. Click on the report outside of the pie chart to deselect it and select stacked column chart in **Visualizations** pane. 
 
-6. Arrastre el campo **Visita** y colóquelo en el cuadro de destino **Valores**.
+6. Drag **Visit** field and drop it into **Values** target box.
 
-7. Arrastre el campo **Comienzo** y colóquelo en el cuadro de destino **Eje**.
+7. Drag **Start** field and drop it into **Axis** target box.
 
-8. En el panel Visualizaciones, haga clic en **X** junto a **Día** y **Trimestre** para dejar solo los totales de **Año** y **Mes** en el eje.
+8. In the Visualizations pane, click **x** next to **Day** and **Quarter** to leave only **Year** and **Month** totals for the Axis.
 
-9. Cambie el tamaño del gráfico como desee con los controladores de las esquinas.
+9. Resize the chart as desired using the corner handles.
 
-10. Pruebe la interactividad del informe:
+10. Test the report interactivity:
 
-    * Seleccione varios sectores de edificios en el gráfico circular y observe los cambios en el informe de tiempos.
+    * Select various building slices on the pie chart and observe changes on the time report.
     
-    * Haga clic en el gráfico de columnas. Pulse la flecha que indica hacia abajo para activar el modo **Explorar en profundidad** y luego pulse la columna para explorar en profundidad hasta el siguiente nivel (meses). Otra forma de hacer esto es hacer clic en **Datos/Explorar \| Expandir el siguiente nivel** en la barra de herramientas.
+    * Click on the column chart. Press the down arrow to turn on **Drill down** mode, then press the column to drill down to the next level (months). Another way to do this is to click **Data/Drill \| Expand next level** on the ribbon.
     
-    * Agrupe y desagrupe datos para rastrear y seleccione varias barras en el gráfico de columnas de tiempo para observar los cambios en el informe circular.
+    * Drill up and down and select various bars on the time column chart to observe changes on the pie report.
     
-11. Para guardar el trabajo en curso, pulse **Archivo \| Guardar**.
+11. Save work in progress by pressing **File \| Save**.
 
-# Ejercicio 2: Crear un panel de control de Power BI
+# Exercise #2: Create Power BI Dashboard
 
-## Tarea 1: Publicar el informe de Power BI
+## Task #1: Publish Power BI Report
 
-1. Pulse el botón **Publicar** en la pestaña Inicio de la barra de herramientas.
+1. Press **Publish** button on the Home tab of the ribbon.
 
-2. Seleccione **Mi área de trabajo** como destino y luego pulse **Seleccionar**.
+2. Select **My workspace** as the destination, then press **Select**.
 
-3. Espere hasta que se complete la publicación y haga clic en **Abrir\<nombre de su informe\>.pbix en Power BI**.
+3. Wait until publishing is complete and click **Open \<name of your report\>.pbix in Power BI**.
 
-## Tarea 2: Crear un panel de control de Power BI
+## Task #2: Create Power BI Dashboard
 
-1. Debería tener abierto el informe de la tarea anterior.
+1. You should have the report open from the previous task.
 
-2. Seleccione **Anclar a un panel** en el menú. Según el diseño, es posible que deba pulsar **...** para mostrar los elementos de menú adicionales.
+2. Select **Pin to a dashboard** on the menu. Depending on the layout you may need to press **...** to show additional menu items.
 
-3. Seleccione **Nuevo panel** en la confirmación de **Anclar al panel**.
+3. Select **New dashboard** on **Pin to dashboard** prompt.
 
-4. Escriba **[Su apellido] Administración del campus** como un **Nombre de panel** y pulse **Anclar elemento activo**.
+4. Enter **[Your Last Name] Campus Management** as a **Dashboard name**, press **Pin live**.
 
-5. Seleccione **Mi área de trabajo** en la parte superior y después seleccione el panel **[Su apellido] Administración del campus**.
+5. Select **My workspace** at the top, select **[Your Last Name] Campus Management** dashboard.
 
-6. Pruebe la interactividad de los gráficos circulares y de barras que se muestran.
+6. Test interactivity of the pie and bar charts displayed.
 
-## Tarea 3: Agregar visualizaciones con lenguaje natural
+## Task #3: Add Visualizations Using Natural Language
 
-1. En el panel de información **Administración del campus**, seleccione la barra **Preguntar algo sobre sus datos** en la parte superior.
+1. Within your **Campus Management** dashboard, select **Ask a question about your data** bar at the top.
 
-2. Escriba **edificios por número de visitas** en el área de preguntas y respuestas. Se mostrará el gráfico de barras.
+2. Enter **buildings by number of visits** in Q&A area. The bar chart will be displayed.
 
-3. Seleccione **Anclar visualización**.
+3. Select **Pin visual**.
 
-4. Seleccione **Panel existente**, seleccione su panel **[Su apellido] Administración del campus** y pulse **Anclar**.
+4. Select **Existing dashboard**, select your **[Your Last Name] Campus Management** dashboard, press **Pin**.
 
-5. Haga clic en **Salir de Preguntas y respuestas**.
+5. Click **Exit Q&A**.
 
-Se debería mostrar el panel **[Su apellido] Administración del campus**. Es posible que deba desplazarse hacia abajo para ver el nuevo objeto visual Preguntas y respuestas. 
+Your **[Your Last Name] Campus Management** dashboard should be displayed. You may have to scroll down to see the new Q&A visual. 
 
-Su panel debería tener un aspecto similar al siguiente:
+Your dashboard should look similar to the following:
 
-![Panel de Power BI](media/5-powerbi-result.png)
+![Power BI Dashboard](media/5-powerbi-result.png)
 
-## Tarea 4: Crear una vista de teléfono móvil y compartir un informe con un código QR
+## Task #4: Build Mobile Phone View and Share a Report with a QR Code
 
-1. En el panel, seleccione **Editar \| Vista móvil**.
+1. In the Dashboard, select **Edit \| Mobile View**.
 
-2. Reorganice los iconos como desee.
+2. Rearrange tiles as desired.
 
-3. Haga clic en **Vista de teléfono** en la parte superior derecha y cambie la Vista a **Vista web**.
+3. Click **Phone view** at the top right and change the View to **Web view**.
 
-4. Seleccione **Mi área de trabajo** en la parte superior y seleccione su **Informe**.
+4. Select **My Workspace** at the top, and select your **Report**.
 
-5. Seleccione **Editar** y luego **... \| Generar código QR**.
+5. Select **Edit** and then select **... \| Generate QR Code**.
 
-6. *Opcional:* si tiene un dispositivo móvil, escanee el código con una aplicación de escáner de QR, disponible en plataformas iOS y Android, o en la aplicación de la cámara, si su teléfono la admite. Inicie sesión en su cuenta si se le pide. Navegue y explore el informe en un dispositivo móvil.
+6. *Optional:* If you have a mobile device, scan the code using a QR scanner app available on both iOS and Android platforms, or the camera app if your phone supports it. Log in to your account if prompted. Navigate and explore the report on a mobile device.
 
-# Retos
+# Challenges
 
-* Cree paneles e informes para incluir los planos del edificio y el campus
-* Informe y analice patrones y tendencias de visitas
-* Visualización sobrepasada
-* Streaming de Power BI para un procesamiento casi en tiempo real en un campus grandes 
+* Dashboards and reports to include your campus and building plans
+* Report and analyze visiting patterns and trends
+* Overstaying visualization
+* Streaming Power BI for near real-time processing for a large campus 
