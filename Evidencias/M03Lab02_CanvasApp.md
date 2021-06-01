@@ -15,3 +15,10 @@
 ![image8](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image8.png)
 
 ![image9](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image9.png)
+
+![image10](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image10.png)
+
+![image11](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image11.png)
+
+![image12](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image12.png)
+
