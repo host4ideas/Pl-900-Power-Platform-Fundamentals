@@ -1,10 +1,12 @@
-![image1](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M05Lab01_Power_BI\image1.png)
+## M05Lab01_Power_BI
 
-![image2](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M05Lab01_Power_BI\image2.png)
+![image1](../Media/M05Lab01_Power_BI/image1.png)
 
-![image3](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M05Lab01_Power_BI\image3.png)
+![image2](../Media/M05Lab01_Power_BI/image2.png)
 
-![image4](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M05Lab01_Power_BI\image4.png)
+![image3](../Media/M05Lab01_Power_BI/image3.png)
 
-![image5](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M05Lab01_Power_BI\image5.png)
+![image4](../Media/M05Lab01_Power_BI/image4.png)
+
+![image5](../Media/M05Lab01_Power_BI/image5.png)
 

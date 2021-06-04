@@ -1,24 +1,25 @@
-![image1](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image1.png)
+## M03Lab02_CanvasApp
 
-![image2](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image2.png)
+![image1](../Media/M03Lab02_CanvasApp/image1.png)
 
-![image3](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image3.png)
+![image2](../Media/M03Lab02_CanvasApp/image2.png)
 
-![image4](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image4.png)
+![image3](../Media/M03Lab02_CanvasApp/image3.png)
 
-![image5](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image5.png)
+![image4](../Media/M03Lab02_CanvasApp/image4.png)
 
-![image6](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image6.png)
+![image5](../Media/M03Lab02_CanvasApp/image5.png)
 
-![image7](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image7.png)
+![image6](../Media/M03Lab02_CanvasApp/image6.png)
 
-![image8](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image8.png)
+![image7](../Media/M03Lab02_CanvasApp/image7.png)
 
-![image9](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image9.png)
+![image8](../Media/M03Lab02_CanvasApp/image8.png)
 
-![image10](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image10.png)
+![image9](../Media/M03Lab02_CanvasApp/image9.png)
 
-![image11](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image11.png)
+![image10](../Media/M03Lab02_CanvasApp/image10.png)
 
-![image12](D:\Felix\Documents\GitHub\Pl-900-Power-Platform-Fundamentals\Media\M03Lab02_CanvasApp\image12.png)
+![image11](../Media/M03Lab02_CanvasApp/image11.png)
 
+![image12](../Media/M03Lab02_CanvasApp/image12.png)
